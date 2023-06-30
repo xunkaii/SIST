@@ -1,0 +1,61 @@
+확인예제
+1. web server와 web application server의 차이점을 기술하세요.
+	웹서버 : 네트워크망에 종속되지 않고 웹서비스를 할 수 있도록 어플리케이션
+	웹 애플리케이션 : 웹서버 + 웹 컨테이너
+	웹 서버 : 정적인 컨텐츠(HTML, CSS 이미지 등
+	was : 동적인 컨텐츠를 처리하는 서버로, 비즈니스 로직을 실행하고 데이터베이스와의 상호작용,
+	트랜잭션 관리 등을 수행합니다. 클라이언트로부터 요청을 받아서 웹 애플리케이션 로직을 수행한 후, 결과를 클라이언트
+	에게 반환합니다. 대표적인 예로 Apache Tomcat, Jboss, jeus, weblogic이 있습니다
+	
+2. was안에서 jsp 프로그램의 처리 과정으로 client단부터 sever단까지 구분하여 설명하세요.
+- 클라이언트(client)가 웹 브라우저를 통해 jsp 페이지를 요청합니다
+	url로 http://도메인/아이피주소:port/프로젝트명/경로/@@@.jsp
+- 요청된 jsp 페이지는 was의 jsp 컨테이너에 의해 처리되빈다
+- jsp 컨테이너는 jsp 페이지를 servlet으로 변환합니다 (컴파일)
+	jsp ==> servlet(java) ==>
+- 변환된 servlet은 실행되어 동적인 html 문서를 생성합니다
+	java + html(js, css) ==> html
+	java
+	<%
+	String isSuccess = 요청값을 받아서 DB를 확인해서 성공 여부를 Y/N으로 할당
+	if(success == 'Y') {
+		alert("로그인성공")
+	} else {
+		alert("로그인실패")
+	}
+	%>
+	<script>
+	var success = "<%=isSuccess%>"
+- 생성된 html 문서는 클라이언트에게 전달되어 웹 브라우저에서 렌더링되어 화면에 출력됩니다 
+	response.getWriter().print("") 형식으로
+	Stream을 객체를 통해 웹 브라우저에 전달
+	
+	js/jsp 혼합해서 처리
+
+3. servlet과 jsp의 차이점을 기술하세요.
+
+4. servlet에서 한글과 html 코드로 처리할 때, 사용되는 코드를 기술하세요.
+		한글처리 : response.setCharacterEncoding("utf-8");
+		html 코드 출력 : response.setContentType("text/html;charset=utf-8");
+		
+5. servlet에서 반복문으로 7가지 무지개 색 h2를 만드세요
+	String[] colors = {red, orange, yellow, green, blue, navy, purple};
+	
+	out.println("<html>");
+	out.println("<head>무지개</head>");
+	out.println("<body>");
+	
+	for (String color : colors) {
+		out.println("<h2 style ='background:" + color + "'>" + color + "</h2>");
+	}
+	
+	out.println("</body>");
+	out.println("</html>");
+	
+6. servlet에서 4X4테이블로 클릭시 @@번호 안녕하세요가 alert으로 로딩되게 하세요.
+
+
+7. jsp의 script 3가지를 코드와 함께 기술하세요.
+8. jsp에서 선언(declaration)을 통해서 가격과 갯수를 선언하고, 메서드를 통해 가격과 갯수를 받아서 합산을 처리하는 메서드를
+   선언하고, 하단에서 호출하는 화면을 만드세요.
+9. jsp의 sciptlet과 expression을 이용해서 랜덤 구구단을 테이블로 9X1로 출력해보세요

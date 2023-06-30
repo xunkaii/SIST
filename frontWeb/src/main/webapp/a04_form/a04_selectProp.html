@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<!-- 
+		# select 선택형 입력의 세부 속성
+		1. 형식
+			select 속성=속성값
+			option value : 항목의 값을 지정
+				   selected : 초기 선택 되어진 항목을 출력
+		2. 속성
+			1) name : 해당 name값을 기준으로 선택된 항목(option)을 key=value
+				형식으로 서버에 전송이 된다.
+			2) size : 한번에 보일 선택 항목(option)의 갯수를 지정할 수 있다.
+			3) multiple : ctrl 누른 상태에서 마우스 클릭으로 여러 개를 선택할
+				때 사용된다. 이렇게 여러 개 선택하면, 서버에도 배열데이터로
+				전송될 수 있다.
+				ex) name, option의 선택 value값과 연동 해서 다중으로 서버에
+				전송.
+				<select name="sel01" multiple>
+					<option>사과</option>
+					<option>바나나</option>
+					<option>딸기</option>
+					<option>오렌지</option>
+				sel01=사과
+				sel01=사과&sel01=바나나&sel01=오렌지
+				동일한 이름으로 여러 개를 전송  ==> 서버에서는 배열로 전달받는다.
+					
+					
+				
+				
+		 -->
+		 <form>
+			사원1(size=2):<select name="empno1" size="2">
+				<option value="1000">홍길동</option>
+				<option value="2000">신길동</option>
+				<option value="3000">김길동</option>
+				<option value="4000">마길동</option>
+				<option value="5000">오길동</option>
+				<option value="7000">하길동</option>
+			</select><br>
+			사원2(multiple):<select name="empno2" multiple>
+				<option value="1000">홍길동</option>
+				<option value="2000">신길동</option>
+				<option value="3000">김길동</option>
+				<option value="4000">마길동</option>
+				<option value="5000">오길동</option>
+				<option value="7000">하길동</option>
+			</select><br>
+			사원3(selected):<select name="empno3">
+				<option value="1000">홍길동</option>
+				<option value="2000">신길동</option>
+				<option value="3000" selected>김길동</option>
+				<option value="4000">마길동</option>
+				<option value="5000">오길동</option>
+				<option value="7000">하길동</option>
+			</select><br>
+			<!-- 초기 로딩화면에서 default로 선택 option이 김길동으로
+				처리할 때, 활용된다. -->
+			<input type="submit">	
+		</form>
+		<!-- 
+		
+		empno1=2000
+		&empno2=1000&empno2=3000&empno2=40  : multiple일 때,
+			ctrl를 통해 선택한 항목들을 전송한다.
+		&empno3=5000
+		ex) 성별(단일선택-두번째 항목 선택), 좋아하는 음식(다중선택),
+			부서정보(3개 보이게 처리 - 인사, 재무, 회계, 기획, it사업부) 
+			로 combo를 처리하세요.
+		 -->
+		 <form>
+		 	성별(단일선택):
+		 	<select name="gender">
+		 		<option>남</option>
+		 		<option selected>여</option>
+		 	</select><br>
+		 	좋아하는음식(다중선택):
+		 	<select name="foods" multiple>
+		 		<option>짜장면</option>
+		 		<option>짬뽕</option>
+		 		<option>탕수육</option>
+		 		<option>일식</option>
+		 		<option>한정식</option>
+		 	</select><br>
+		 	부서정보(3항목한번에 보이기)
+		 	<select name="dept" size="3">
+		 		<option>인사</option>
+		 		<option>재무</option>
+		 		<option>회계</option>
+		 		<option>기획</option>
+		 		<option>id사업부</option>
+		 	</select><br>
+		 	<input type="submit">	
+		 </form>					
+		 <!-- 
+		 gender=여&foods=짜장면&foods=탕수육&foods=한정식&dept=재무
+		  --> 
+	</body>
+</html>

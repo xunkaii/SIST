@@ -1,0 +1,331 @@
+1. 다음 중 Connection 객체를 얻는 과정에서 사용되는 클래스는 무엇인가요?
+    - A. ResultSet
+    - B. DriverManager
+    - C. Statement
+    - D. DB
+    B
+    Connection con = DriverManager.getConnection(info,"scott","tiger");
+
+2. 다음 중 예외 처리가 필요한 JDBC 관련 작업은 무엇인가요?
+    - A. SQL 쿼리 작성
+    - B. DriverManager를 사용하여 DB 연결 
+    - C. SQL 쿼리의 결과 출력
+    - D. DB 연결 정보 문자열 작성
+    B
+
+3. "jdbc:oracle:thin:@localhost:1521:xe" 문자열은 어떤 정보를 담고 있는가요?
+    - A. SQL 쿼리
+    - B. JDBC 드라이버 이름
+    - C. 데이터베이스 연결 정보
+    - D. 데이터베이스 사용자 이름과 비밀번호
+    C
+	String info = "jdbc:oracle:thin:@localhost:1521:xe";
+	con = DriverManager.getConnection(info,"scott","tiger");
+
+    
+4. 다음 중 ResultSet 객체가 반환하는 메소드는 무엇인가요?
+    - A. executeQuery()
+    - B. getConnection()
+    - C. next()
+    - D. createStatement()
+    B
+	rs.next() : 행단위이동 boolean while()
+	rs.get데이터유형("컬럼명") : 해당 행의 열에 있는 데이터 호출.
+	rs.get데이터유형(1) : 해당 행의 열에 있는 데이터 호출.
+	rs.getString(1) : 순서와 문자열형으로 데이터를 전환해서도
+					  가져올 수 있다.
+		select 1번째, 2번째,.....
+	
+5. DB 클래스의 con 메소드에서 예외가 발생할 경우 어떻게 처리하는가요?
+    - A. 예외를 무시한다.
+    - B. 예외 메시지를 출력한다.
+    - C. 프로그램을 종료한다.
+    - D. 예외를 다시 발생시킨다.
+    B.
+    예외는 프로세스를 중단시키지 않고, 해당 내용을 정상적으로 
+    처리하기 위해서 진행되는 것이다.
+    해당 예외 내용을 try{}catch(){}문으로 처리했으면,
+    예외의 내용을 파악하고, 예외가 발생하더라도 정상적으로
+    처리하기 위한 목적이다.
+
+6. SQL 쿼리 결과를 가져오기 위해 사용되는 객체는 무엇인가요?
+    - A. Connection
+    - B. DriverManager
+    - C. Statement
+    - D. ResultSet
+    D
+    
+    DriverManager ==> Connection ==> Statement
+    ==> ResultSet
+    select문을 통해서 결과 내용을 가져오기 위해서는 ResultSet
+    로 처리한다.
+ 
+7. A02_EmpDao 클래스의 empListAll 메소드에서 사용하는 SQL 쿼리는 어떤 작업을 하는가요?
+    - A. 데이터베이스에 연결한다.
+    - B. 데이터베이스의 모든 데이터를 삭제한다.
+    - C. 데이터베이스의 특정 데이터를 수정한다.
+    - D. 데이터베이스의 모든 데이터를 조회한다.
+    D
+    
+    select sql을 통해서 전체 사원 정보를 가져와서, 
+    출력을 한다.
+
+8. 다음 중 JDBC에서 SQL 쿼리를 실행하는 객체는 무엇인가요?
+    - A. Connection
+    - B. DriverManager
+    - C. Statement
+    - D. ResultSet
+    C
+ 	// Statement객체가 가지고 있는 executeQuery()
+	// 메서드를 통해서 ResultSet객체를 생성..
+	rs = stmt.executeQuery(sql);
+				   
+    
+
+9. 다음 중 DB에서 데이터를 가져올 때 다음 행으로 이동시키는 메소드는 무엇인가요?
+    - A. getRow()
+    - B. next()
+    - C. previous()
+    - D. moveToNext()
+    B
+	rs.next() : 다음행에 데이터 있는지여부를 boolean
+	해당 위치(행)에 cursor를 위치시켜 열단위 데이터를 가져온다.
+
+
+11. DB 클래스의 con 메소드가 성공적으로 데이터베이스에 연결하면 어떤 메시지를 출력하는가요?
+    - A. "DB 접속 실패"
+    - B. "DB 접속 성공"
+    - C. "클래스 예외"
+    - D. "DB 연결 불가"
+    B
+
+12. 다음 중 ResultSet에서 데이터를 가져오는 메소드는 무엇인가요?
+    - A. get()
+    - B. extract()
+    - C. fetch()
+    - D. getInt() / getString() 등
+    rs.get타입("컬럼명") : 컬럼명
+    rs.get타입(1,2,3....) : select ename, empno
+
+13. SQL 쿼리를 실행한 후, 그 결과를 어떤 객체를 통해 가져오는가요?
+    - A. Connection
+    - B. DriverManager
+    - C. Statement
+    - D. ResultSet
+    D
+    Statement : 실행을 통해서 ResultSet객체를 만들어 준다.
+    ResultSet는 데이터를 가져온 객체로 .next()
+    	.getXXXX()를 통해서 데이터의 결과를 가져온다.
+
+14. A02_EmpDao 클래스의 main 메소드에서 인스턴스화 되는 클래스는 무엇인가요?
+    - A. DB
+    - B. Connection
+    - C. ResultSet
+    - D. A02_EmpDao
+    D
+    instance : 참조한변수를 지정하는 개념..
+    A02_EmpDao dao = new A02_EmpDao();
+    
+
+15. 다음 중 JDBC에서 SQL 쿼리를 수행할 준비를 하는 객체는 무엇인가요?
+    - A. Connection
+    - B. DriverManager
+    - C. Statement
+    - D. ResultSet
+	C
+	stmt.executeQuery("select * from emp")
+	실제 sql을 처리하는 객체를 Statement이다.
+
+16. 다음 중 Java에서 Oracle 데이터베이스에 연결하기 위해 사용하는 JDBC 드라이버의 이름은 무엇인가요?
+    - A. "jdbc.oracle.driver.OracleDriver"
+    - B. "java.jdbc.OracleDriver"
+    - C. "oracle.jdbc.driver.OracleDriver"
+    - D. "jdbc:oracle:thin:@localhost:1521:xe"
+	C
+	Class.forName("oracle.jdbc.driver.OracleDriver")
+	jdbc드라이버 설정 부분..
+	
+	jdbc:oracle:thin:@localhost:1521:xe :
+	jdbc드라이버를 통해서 특정 서버에 접근..
+
+17. JDBC에서 사용하는 Statement 객체의 역할은 무엇인가요?
+    - A. 데이터베이스와의 연결을 관리한다.
+    - B. SQL 쿼리를 실행하고 그 결과를 받아온다.
+    - C. 데이터베이스에서 데이터를 가져와서 Java에서 사용할 수 있는 형태로 변환한다.
+    - D. 데이터베이스 연결 정보를 저장한다.
+    B
+    ResultSet rs = stmt.executeQuery("select * from emp")
+    
+
+18. A02_EmpDao 클래스에서 연결(con), 대화(stmt), 결과(rs)는 각각 어떤 객체를 참조하는가요?
+    - A. Connection, Statement, ResultSet
+    - B. ResultSet, Connection, Statement
+    - C. Statement, ResultSet, Connection
+    - D. DriverManager, Connection, Statement
+	A
+	전역변수로 사용 객체
+	연결(Connection)
+	대화(Statement)
+	결과데이터(ResultSet)
+
+19. 다음 중 SQL 쿼리 결과를 업데이트하거나 조회하는 JDBC 클래스는 무엇인가요?
+    - A. Connection
+    - B. Statement
+    - C. ResultSet
+    - D. DriverManager
+    C
+	Statement : 쿼리를 실행해서 결과 ResultSet를 가져오는 객체
+	ResultSet : 결과를 가져와서 데이터를 처리해주는 객체
+		 ResultSet안에 데이터를 가지고 있어서,
+		 이것을 VO객체에 다시 할당하거나, 변경하는 등 여러가지
+		 작업(조회)를 할 수 있는 객체이다..
+
+20. ResultSet의 next 메소드가 반환하는 값의 타입은 무엇인가요?
+    - A. int
+    - B. String
+    - C. boolean
+    - D. void
+    C
+    while(rs.next()) 행단위로 이동 처리 다음 행에
+    	데이터가 없을 때 false
+
+
+21. 다음 중 Statement 객체를 생성하는데 사용되는 메소드는 무엇인가요?
+    - A. connect()
+    - B. execute()
+    - C. createStatement()
+    - D. next()
+    
+    Connection 객체는 con.createStatement()를 통해서
+    Statement를 생성해준다.
+    Statement stmt = con.createStatement()
+
+
+22. "oracle.jdbc.driver.OracleDriver" 문자열은 어떤 역할을 하는가요?
+    - A. SQL 쿼리 작성
+    - B. JDBC 드라이버 로드
+    - C. 데이터베이스 연결 정보 설정
+    - D. 데이터베이스 사용자 인증
+
+	Class.forName("패키지.클래스명") : 물리적인 클래스를
+		프로그램의 객체로 로딩..
+	각 데이터베이스 서버 회사에서 지원하는 압축된 @@@.jar를의
+	메일 클래스를 호출하여 데이터베이스 처리할 수 있게 하는 것이
+	드라이버이고, Class.forName()을 통해서 객체로 메모리에
+	로딩한다.	DriverManager.getConnection() 사용할 수 있는
+	원인이 여기에 있다.
+
+23. 다음 중 ResultSet에서 데이터를 가져오는데 사용되는 메소드는 무엇인가요?
+    - A. next()
+    - B. getResultSet()
+    - C. getInt(), getString() 등
+    - D. executeQuery()
+	실제 데이터를 가져오는 메서드 rs.getInt(), 
+	rs.getDouble(), rs.getString()
+
+
+24. 다음 중 데이터베이스와의 연결을 종료하는 메소드는 무엇인가요?
+    - A. close()
+    - B. disconnect()
+    - C. end()
+    - D. terminate()
+	A	
+	rs.close()
+	stmt.close()
+	con.close()
+	객체의 자원은 만들어진 역순위로 자원을 해제한다.
+
+
+25. 다음 중 JDBC의 기본 작업 흐름으로 가장 적절한 순서는 무엇인가요?
+    - A. DriverManager.getConnection() -> Class.forName() -> Statement 생성 -> ResultSet 처리
+    - B. Class.forName() -> DriverManager.getConnection() -> Connection -> Statement 생성 -> ResultSet 처리
+    - C. DriverManager.getConnection() -> ResultSet 처리 -> Class.forName() -> Statement 생성
+    - D. Class.forName() -> ResultSet 처리 -> DriverManager.getConnection() -> Statement 생성
+    B
+    클래스 드라이버 메모리 로딩 : Class.forName()
+    Connection 객체 만들기 :  DriverManager.getConnection() 
+    Statement 객체 만들기 : Connection 객체의 createStatement()
+    ResultSet 객체 만들기 : Statement객체의 executeQuery(sql)
+    
+    
+# 정리 과제
+1. `con = DB.con();` 이라인에서 con의 역할은 무엇인가요?
+   a) SQL문을 실행
+   b) 데이터베이스에 연결
+   c) 결과셋을 가져옴
+   d) SQL문을 작성
+
+2. `stmt = con.createStatement();` 이라인에서 stmt의 역할은 무엇인가요?
+   a) SQL문을 실행
+   b) 데이터베이스에 연결
+   c) 결과셋을 가져옴
+   d) SQL문을 작성
+
+3. `rs = stmt.executeQuery(sql);` 이라인에서 rs의 역할은 무엇인가요?
+   a) SQL문을 실행
+   b) 데이터베이스에 연결
+   c) 결과셋을 가져옴
+   d) SQL문을 작성
+
+4. `while(rs.next())`이 구문은 어떤 역할을 하는가?
+   a) 결과셋에서 다음 행이 있는지 확인
+   b) 결과셋을 다음 행으로 이동
+   c) 결과셋의 모든 행을 반복
+   d) 모든 위의 옵션
+
+5. `rs.getInt("deptno")`, `rs.getString("dname")`, `rs.getString("loc")` 세 메서드는 어떤 역할을 하는가?
+   a) 결과셋에서 해당 컬럼의 데이터를 가져옴
+   b) 결과셋의 데이터 타입을 설정
+   c) 데이터베이스에 쿼리를 보냄
+   d) 결과셋의 다음 행으로 이동
+
+6. 자원해제는 왜 필요한가?
+   a) 메모리 절약
+   b) 데이터 무결성 유지
+   c) 성능 향상
+   d) 모든 위의 옵션
+
+7. `rs.close(); stmt.close(); con.close();` 이 세 줄의 코드 순서가 중요한 이유는 무엇인가?
+   a) 자원 사용 순서의 역순으로 해제해야 함
+   b) 자원이 연결되어 있기 때문
+   c) 성능을 향상시키기 위해
+   d) a와 b 모두
+
+8. 이 코드에서 예외처리는 어떻게 이루어지는가?
+   a) 개별적인 try-catch 블록으로 각 메서드 호출을 둘러싸고 있다.
+   b) 모든 코드를 둘러싸는 단일 try-catch 블록이 있다.
+   c) 각 메서드 호출 후에 예외가 있는지 확인하는 if 문이 있다.
+   d) finally 블록에서 예외를 처리하고 있다.
+
+9. 이 코드의 finally 블록에서는 어떤 작업이 이루어지는가?
+   a) 모든 자원을 해제하고 있다.
+   b) 자원이 이미 해제되어 있는지 확인하고, 그렇지 않은 경우 해제하고 있다.
+   c) 예외 발생 여부를 출력하고 있다.
+   d) 다음 데이터베이스 연결을 준비하고 있다.
+
+10. 아래 코드 `if(rs!=null) rs = null;` 의 의미는 무엇인가?
+   a) 결과셋이 비어있지 않은지 확인
+   b) 결과셋이 아직 해제되지 않았다면 해제
+   c) 결과셋이 비어있다면 새로 생성
+   d) 결과셋에 null을 저장
+
+정답:
+1. b) 데이터베이스에 연결
+2. d) SQL문을 작성
+3. c) 결과셋을 가져옴
+4. d) 모든 위의 옵션
+5. a) 결과셋에서 해당 컬럼의 데이터를 가져옴
+6. d) 모든 위의 옵션
+7. d) a와 b 모두
+8. b) 모든 코드를 둘러싸는 단일 try-catch 블록이 있다.
+9. b) 자원이 이미 해제되어 있는지 확인하고, 그렇지 않은 경우 해제하고 있다.
+10. b) 결과셋이 아직 해제되지 않았다면 해제
+   
+
+
+
+    
+    
+    
+    
+    

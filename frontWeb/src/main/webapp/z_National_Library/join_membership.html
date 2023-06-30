@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nl_Join.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>기본정보 입력</h3>
+    <h5>* 표시는 필수 입력 사항입니다</h5>
+    <form>
+        <table>
+            <!-- 회원유형 -->
+            <tr>
+                <td class="color1">* 회원유형</td>
+                <td>
+                    <input type="radio" id="type1" name="membership" />
+                    <label name="normal">일반회원</label>
+
+                    <input type="radio" id="type2" name="membership" />
+                    <label name="gong">공무원</label>
+
+                    <input type="radio" id="type3" name="membership" />
+                    <label name="gonggong">공공기관(일부 정부부처 포함)</label>
+                </td>
+            </tr>
+
+            <!-- 회원인증 -->
+            <tr>
+                <td class="color1">회원인증</td>
+                <td></td>
+            </tr>
+
+            <!-- 회원 ID -->
+            <tr>
+                <td class="color1">* 회원 ID</td>
+                <td>
+                    <input type="text" name="id" />
+                    <span id="idValid"></span>
+                    <input type="button" value="중복확인" maxlength="12" onclick="checkId()">
+
+                    * 6~12자리의 영문 또는 숫자 혼용, 특수문자 제외
+                </td>
+            </tr>
+
+            <!-- 비밀번호 -->
+            <tr>
+                <td class="color1">* 비밀번호</td>
+                <td>
+                    <input type="password" name="pass" maxlength="16" /><br>
+                    <span id="passValid"></span>
+                    * 10~16자리 영문/숫자 또는 특수문자{!@#$%^&*()} 혼용
+                </td>
+            </tr>
+
+            <!-- 비밀번호 확인 -->
+            <tr>
+                <td class="color1">* 비밀번호 확인</td>
+                <td>
+                    <input type="password" name="passAgain" maxlength="16">
+                    <span id="passAgainValidOb"></span>
+                    * 비밀번호 동일 입력
+                </td>
+            </tr>
+
+            <!-- 성명 -->
+            <tr>
+                <td class="color1">성명</td>
+                <td></td>
+            </tr>
+
+            <!-- 생년월일 -->
+            <tr>
+                <td class="color1">생년월일</td>
+                <td></td>
+            </tr>
+
+            <!-- 성별 -->
+            <tr>
+                <td class="color1">성별</td>
+                <td>
+                    <input type="radio" id="type1" name="male" />
+                    <label for="male">남</label>
+                    <input type="radio" id="type2" name="female" />
+                    <label for="female">여</label>
+                    <input type="radio" id="type3" name="disagree" />
+                    <label for="disagree">동의안함</label>
+                </td>
+            </tr>
+
+            <!-- 연락처 -->
+            <tr>
+                <td class="color1">* 연락처</td>
+                <td>
+                    <select>
+                        <option value="t010">010</option>
+                        <option value="t011">011</option>
+                        <option value="t016">016</option>
+                        <option value="t017">017</option>
+                        <option value="t019">019</option>
+                    </select>
+                    - <input type="text" maxlength="4" size="4" />
+                    - <input type="text" maxlength="4" size="4" /><br>
+                    <span id="certiNumValid"></span>
+                    <input type="submit" value="인증번호 확인" onclick="checkNum()" />
+                </td>
+            </tr>
+
+            <!-- 이메일 -->
+            <tr>
+                <td class="color1">* 이메일</td>
+                <td>
+                    <input type="text"> @
+                    <select>
+                        <option value="mail">gmail.com</option>
+                        <option value="mail">naver.com</option>
+                        <option value="mail">yahoo.co.kr</option>
+                        <option value="mail">daum.net</option>
+                        <option value="mail">hanmail.net</option>
+                    </select>
+                </td>
+            </tr>
+
+            <!-- 주소 -->
+            <tr>
+                <td class="color1">* 주소</td>
+                <td>
+                    <input type="submit" value="주소검색"> * 우편번호 검색을 통해 기본주소를 먼저 입력해주세요/
+                    <br>
+                    <input type="text" value=""><br>
+                    <input type="text" value="">
+                </td>
+            </tr>
+
+            <!-- SMS 통보 여부 -->
+            <tr>
+                <td class="color1">SMS 통보 여부(선택)</td>
+                <td>
+                    <input type="checkbox">SMS 통보 신청<br>
+                    * 신청결과를 휴대전화번호로 알려드립니다
+                </td>
+            </tr>
+        </table>
+
+        <!-- 회원가입신청 -->
+        <div class="center">
+            <button>회원가입 신청</button>
+        </div>
+    </form>
+</body>
+
+<script>
+
+    /* 회원 ID 유효성 검사 */
+    function checkId() {
+        var ptrn = /^[a-zA-Z0-9]{6,12}$/;
+        var str = document.getElementsByName("id")[0].value;
+        var idValidOb = document.getElementById("idValid");
+
+        if (ptrn.test(str)) {
+            idValidOb.innerText = "사용 가능한 ID입니다";
+            idValidOb.style.color = "black";
+        } else {
+            idValidOb.innerText = "아이디 형식이 맞지 않습니다";
+            idValidOb.style.color = "red";
+        }
+    }
+
+    /* 비밀번호 유효성 검사 */
+    var passOb = document.querySelector("[name = pass]")
+    var passValidOb = document.querySelector("#passValid")
+    passOb.onkeyup = function () {
+        var ptrn = /^(?=.*[a-zA-Z0-9])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}$/;
+        var str = this.value
+        if (ptrn.test(str)) {
+            passValidOb.innerText = "비밀번호 형식이 맞습니다"
+            passValidOb.style.color = "black";
+        } else {
+            passValidOb.innerText = "비밀번호 형식이 맞지 않습니다"
+            passValidOb.style.color = "red";
+        }
+    }
+
+    /* 비밀번호 확인 */
+    var passOb = document.querySelector("[name=pass]");
+    var passAgainOb = document.querySelector("[name=passAgain]");
+    var passAgainValidOb = document.querySelector("#passAgainValidOb");
+
+    passAgainOb.onkeyup = function() {
+        if (passAgainOb.value === passOb.value) {
+            passAgainValidOb.innerText = "동일합니다";
+            passAgainValidOb.style.color = "red";
+        } else {
+            passAgainValidOb.innerText = "동일하지 않습니다";
+            passAgainValidOb.style.color = "red";
+        }
+    };
+
+    /* 인증번호 확인 */
+    function checkNum() {
+        event.preventDefault(); // 기본 동작 취소
+        let ranNum = Math.floor(Math.random() * 900000 + 100000)
+        let putRanNum = prompt("인증번호를 입력하세요: " + ranNum)
+        var msg = ""
+        if (putRanNum == ranNum) {
+            alert('인증 성공')
+            var messageElement = document.getElementById('certiNumValid');
+            messageElement.innerText = "인증 완료";
+        } else {
+            alert('다시 입력하세요')
+        }
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+		/*
+		# css의 주석문
+		*/
+		
+		</style>	
+		<script type="text/javascript">
+			/*
+			# 타이틀
+			*/
+			alert("자바스크립트 시작!!")
+			function call(obj){
+				// 객체가 가지고 있는 속성을 동적으로 변경 처리한다.
+				obj.innerText="변신 텍스트 %^^%"
+				obj.style.background="yellow";
+			}
+		</script>	
+	</head>
+	<body>
+		<!--
+		클릭하는 이벤트를 처리하면
+		call함수를 호출하고 매개변수 this(현재 객체 h2)를 전달합니다.
+		-->
+		<h2 onclick="call(this)">안녕하세요!!</h2>
+	</body>
+		<script type="text/javascript">
+			document.querySelector("h2").innerText="javascipt 시작";
+		
+		</script>
+</html>

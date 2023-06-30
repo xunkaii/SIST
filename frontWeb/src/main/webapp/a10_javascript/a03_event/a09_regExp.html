@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  
+        */
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+        ex) textarea를 만들고, 위키백과사전에 자바를 검색해서 넣고, 자바관련 내용이 얼마나 검색되는지 검색버튼
+        클릭시 출력되게 하세요
+     -->
+    <h2>자바관련 검색</h2>
+    <textarea id="text01" cols="40"
+        rows="10">자바(영어: Java)는 썬 마이크로시스템즈의 제임스 고슬링(James Gosling)과 다른 연구원들이 개발한 객체 지향적 프로그래밍 언어이다. 1991년 그린 프로젝트(Green Project)라는 이름으로 시작해 1995년에 발표했다. 처음에는 가전제품 내에 탑재해 동작하는 프로그램을 위해 개발되었지만 현재 웹 애플리케이션 분야에 가장 많이 사용하는 언어 중 하나이고, 안드로이드를 비롯한 모바일 기기용 소프트웨어 개발에도 널리 사용되고 있다. 현재 버전 20까지 출시했다.
+        자바의 개발자들은 유닉스 기반의 배경을 가지고 있었기 때문에 문법적인 특성은 파스칼이 아닌 C++의 조상인 C 언어와 비슷하다.[3] 자바를 다른 컴파일언어와 구분 짓는 가장 큰 특징은 컴파일된 코드가 플랫폼 독립적이라는 점이다. 자바 컴파일러는 자바 언어로 작성된 프로그램을 바이트코드라는 특수한 바이너리 형태로 변환한다. 바이트코드를 실행하기 위해서는 JVM(자바 가상 머신, Java Virtual Machine)이라는 특수한 가상 머신이 필요한데, 이 가상 머신은 자바 바이트코드를 어느 플랫폼에서나 동일한 형태로 실행시킨다. 때문에 자바로 개발된 프로그램은 CPU나 운영 체제의 종류에 관계없이 JVM을 설치할 수 있는 시스템에서는 어디서나 실행할 수 있으며, 이 점이 웹 애플리케이션의 특성과 맞아떨어져 폭발적인 인기를 끌게 되었다.</textarea><br>
+        <input type="text" id="schTxt" value="자바"/>	
+        <input type="button" value="검색" id="schBtn">
+    <p id="showInfo"></p>
+    <script>
+        var schBtn = document.querySelector("#schBtn")
+        var text01 = document.querySelector("#text01")
+        var schTxt = document.querySelector("#schTxt")
+        var showInfo = document.querySelector("#showInfo")
+        schBtn.onclick = function () {
+            // var ptn01 = /사과/gi
+            //  new RexExp(검색할문자열, '옵션')
+            var ptn01 = new RegExp(schTxt.value, 'gi'); // Create a regular
+            var str = text01.value
+            // Check if matches is null (when no match is found)
+            if (matches === null) {
+                showInfo.innerHTML = "데이터:없음, 조회건수: 0"
+            }else {
+                showInfo.innerHTML = "데이터:" + matches[0]+ ", 조회 건수:"+matches.length;
+            }
+            // 대상 textarea에 있는 값을, 패턴과 매칭되고, 그 데이터를 배열로 가져온다
+            var matArr = str.match(ptn01)
+            showInfo.innerHTML = matArr[0] + " 데이터의 검색 건수:" + matArr.length
+        }
+    </script>
+
+
+
+    전화번호:<input type="text" name="phone" />
+    <span id="phoneValid"></span><br>
+    확인할 회원: <input type="text" name="member" />
+    <span id="memberValid"></span>
+    <!-- 
+    ex) 정규식 test 메서드를 활용해서 himan이 입력되면 등록한 회원은 있습니다
+    그렇지 않으면 없습니다 출력되게 하세요
+    -->
+
+</body>
+<script type="text/javascript">
+    var memberOb = document.querySelector("[name = member]")
+    var memberValid = document.querySelector("#memberValid")
+    memberOb.onkeyup = function () {
+        var pattern = /himan/
+        if (pattern.test(this.value)) {
+            memberValid.innerText = "등록한 회원이 있습니다"
+        } else {
+            memberValid.innerText = "등록한 회원이 없습니다"
+        }
+    }
+
+
+
+    var phOb = document.querySelector("[name = phone]")
+    var phoneValid = document.querySelector("#phoneValid")
+    phOb.onkeyup = function () {
+        // 전화번호의 정규식 유효 패턴
+        // 전화번호가 3자리 - 3~4자리 - 4자리 숫자로 구성되게 처리
+        var phonePattern = /^\d{3}-\d{3,4}-\d{4}$/;
+        // 해당 패턴에 맞게 입력하면
+        if (phonePattern.test(this.value)) {
+            phoneValid.innerText = "유효한 전화번호 입력입니다"
+        } else {
+            phoneValid.innerText = "전화번호(@@@-@@@@-@@@@)로 입력해야 합니다"
+        }
+    }
+    var pattern = /himan/
+    var memstr = "himan은 등록된 회원입니다"
+    console.log("# test #")
+    console.log(pattern.test(memstr))
+    if (pattern.test(memstr)) {
+        console.log("있습니다")
+    } else {
+        console.log("없습니다")
+    }
+
+
+    /*
+    #  정규식 표현
+    1. 유효성 체크시 복잡한 유효성 데이터를 효과적으로 check할 때, 활용되는 표현방식이다
+        ex) 글자가 @@~@@까지, 주민번호 형식, 이메일 형식, 영문 대소문자와 숫자로 구성등..
+    2. 정규식(regular expression)은 문자열 내에서 특정한 패턴을 찾거나 대치하는 데 사용한다
+    3. 정규식은 매우 강력한 도구이며 다양한 문자열 처리 작업에서 사용할 수 있다
+    4. 정규식 처리 방법
+        1) 리터럴 문법(*)
+            let re = /ab+c/;
+        2) 생성자 함수 문법
+            let re = new RegExp("ab+c")
+    5. 기능 메서드
+        1) test() : 정규식과 일치 여부를 검사하는 메소드
+            패턴.test(입력데이터) : 해당 패턴이 맞으면 boolean true 처리
+        2) exec() : 정규식과 일치하는 문자열을 검색하는 메소드
+            var data = 패턴.exec(입력데이터)
+            일치하는 문자열을 data 변수에 할당한다
+        3) match() : 정규식과 일치하는 문자열을 배열로 반환하는 메소드
+            var arry = 입력문자열.match(패턴)
+            해당 패턴에 맞는 문자열을 배열로 처리
+        4) search() : 정규식과 일치하는 문자열의 인덱스를 반환하는 메소드
+            var idx = 입력문자열.search(패턴)
+            정규식과 일치하는 문자열의 index번호를 반환하는 메소드
+        5) replace() : 정규식과 일치하는 문자열을 대체하는 메소드
+            var rplStr = 입력문자열.replace(패턴, "대체할문자열")
+        6. split() : 정규식을 기준으로 문자열을 분할하여 배열로 반환하는 메소드
+            var arry = 입력문자열.split(패턴)
+    6. 정규식 표현형식
+        1. test() : 합치여부에 따른 boolean 데이터 처리
+    */
+    var pattern = /apple/
+    var str = "I have an apple.!"
+    console.log("# test() #")
+    console.log(pattern.test(str))
+    if (pattern.test(str)) {
+        console.log("apple이 있네요")
+    } else {
+        console.log("apple이 없네요")
+    }
+    // 2 .exec() : 일정한 문자열을 검색하는 메소드
+    // 패턴/i : 대소문자 구문없이 처리해준다
+    var parttern2 = /apple/i
+    var str = "I hvae an apple, Apple is delicious"
+    var result = pattern.exec(str)
+    console.log("# exec() #")
+    console.log("결과:" + result)
+    // 3. match() : 정규식과 일치하는 문자열을 배열로 반환하는 메소드
+    // /g : 정규식 플래그로 global 전역 매치, 한 개 초과할 때, 내용을 모든 패턴 결과 반환
+    var pattern3 = /apple/ig
+    var str = "I have an apple, Apple is delicicous"
+    var matches = str.match(pattern3)
+    console.log("# match() #")
+    console.log(matches)
+    // 4. search() : 정규식과 일치하는 문자열의 인덱스를 반환하는 메소드
+    var pattern = /apple/
+    var str = "I have an apple, Apple is delicicous"
+    var sIdx = str.search(pattern)
+    console.log("# search() #")
+    console.log("검색된 index 위치: " + sIdx)
+    // 5. replace() : 정규식과 일치하는 문자열을 대체하는 메소드
+    var pattern = /apple/g
+    var str = "I have an apple, Apple is delicicous"
+    var replaceStr = str.replace(pattern, 'orange')
+    var sIdx = str.search(pattern)
+    console.log("# replace() #")
+    console.log("대체이후 문자열: " + replaceStr)
+
+    // 6. split() : 정규식을 기준으로 문자열을 분해하여 배열로 반환하는 메소드
+    var pattern = /,/
+    var str = "apple,orange,banana"
+    var fruits = str.split(pattern)
+    console.log("# split() #")
+    console.log("분해된 배열: " + fruits)
+    console.log("분해된 배열: " + fruits.length)
+    console.log("분해된 배열: " + fruits[0])
+
+
+
+
+</script>
+
+</html>

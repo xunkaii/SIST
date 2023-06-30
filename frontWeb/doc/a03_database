@@ -1,0 +1,19 @@
+cmd
+sqlplus
+system//1111
+
+c:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
+scott/tiger
+테스트 계정과 비밀번호
+scott.sql
+
+C:\Users\user>sqlplus
+cmd에서 sqlplus를 실행한 경로를 확인해서,
+scott.sql파일을 복사해서 붙여 놓는다.
+
+@scott.sql
+conn scott/tiger;
+select * from emp;
+
+
+

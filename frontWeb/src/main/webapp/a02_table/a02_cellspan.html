@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			table{
+				border-collapse:collapse;
+				border:1px solid green;
+			}
+			th,td{
+				border:1px solid green;text-align:center;
+			}
+		</style>
+	</head>
+	<!--  
+	# span
+	1. 테이블의 구성요소인 td를 보통 cell이라고 하는데,
+		이 td의 속성을 지정하여 td을 병합처리할 때, 사용하는
+		옵션이다.
+	2. 형식
+		1) colspan="병합할 cell의 갯수"
+			열단위로 병합할 cell을 선하여 병합하는 것을 말한다.
+		2) rowspan = "숫자"
+			행단위로 병합할 cell 선언하는 것을 말한다.
+			
+	-->
+	<body>
+		<h2>span연습1</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td colspan="2"></td><td rowspan="3"></td></tr>
+			<tr><td rowspan="2"></td><td></td></tr>
+			<tr><td></td></tr>
+		</table>
+		<h2>span연습2</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td rowspan="3">1</td><td>2</td><td>3</td></tr>
+			<tr><td>4</td><td>5</td></tr>
+			<tr><td colspan="2">6</td></tr>
+		</table>
+		<h2>span연습2</h2>
+		<table align="center" width="300pt" height="300pt">
+			<tr><td>1</td><td rowspan="3">2</td><td rowspan="2">3</td></tr>
+			<tr><td rowspan="2">4</td></tr>
+			<tr><td>5</td></tr>
+		</table>
+		<h2>span연습4</h2>
+		<style>
+			td{height:25%;}
+		</style>
+		<table align="center" width="300pt" height="300pt">
+			<col width="25%"><col width="25%"><col width="25%"><col width="25%">
+			<tr><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+			<tr><td>6</td><td colspan="2" rowspan="2">0</td><td>11</td></tr>
+			<tr><td>5</td><td>12</td></tr>
+			<tr><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+		</table>								
+	</body>
+</html>

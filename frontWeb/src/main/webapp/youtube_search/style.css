@@ -1,0 +1,286 @@
+/*  공통 변수 설정 */
+:root {
+    /* Color */
+    --black-color: black;
+    --white-color: white;
+
+    /* Size */
+    --avatar-size: 95px;
+    --albumcover-size: 50px;
+    --padding: 12px;
+
+    /* Font Size */
+    --font-large: 24px;
+    --font-medium: 16px;
+    --font-small: 14px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* body 태그의 폰트와 배경 설정 */
+body {
+    font-family: Roboto;
+    background-color: black;
+}
+
+/* 상단 메뉴바 옵션 */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+ul {
+    list-style: none;
+}
+
+/* header 기본 설정 */
+header {
+    margin: auto;
+    width: 100%;
+    height: 100px;
+    color: white;
+    /* display: flex; */
+    /* align-items: center; */
+    background-color: var(--black-color);
+    position: relative;
+    font-size: 20px;
+}
+
+header .logo i {
+    color: red;
+}
+
+/* header .icons .fa-search {
+    /* margin-left: 10px; 
+} */
+
+/* 좌측 상단 제목 */
+header .title {
+    font-size: var(--font-large);
+    display: flex;
+    align-items: center;
+}
+
+/* 검색 상자 */
+header .search_box {
+    position: absolute;
+    top: 10px;
+    left: 450px;
+    width: 1000px;
+    height: 47px;
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+}
+
+/* 검색 상자 스타일 */
+.search_box input {
+    flex: 9;
+    /* search-box내부에서 9만큼의 크기를 차지(비율) */
+    height: 46px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background-color: gray;
+}
+
+/* 검색 버튼 */
+.search_box button {
+    flex: 1;
+    /* search-box내부에서 1만큼의 크기를 차지(비율) */
+    height: 46px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    color: white;
+    background: darkgray;
+}
+
+/* 상위 2개 YT MUSIC & 보관함 */
+header>ytb {
+    position: absolute;
+    width: 70%;
+    height: 40px;
+    bottom: 0;
+}
+
+/* 상위 5개 카테고리 */
+.yt_items {
+    position: absolute;
+    top: 0px;
+    left: 450px;
+    padding: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: baseline;
+    font-size: var(--font-small);
+    font-weight: bold;
+    background-color: transparent;
+    /* box-shadow: none; */
+    /* color: white; */
+}
+
+.yt_items ul>li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+/* .yt_items>ul>li>a {
+    /* text-decoration: none; */
+/* cursor: pointer; 
+} */
+
+.yt_categories {
+    margin-top: auto;
+}
+
+/* 상위 검색 결과 카테고리 */
+.searchResult {
+    position: absolute;
+    width: 70%;
+    top: 150px;
+    left: 450px;
+    color: white;
+    background-color: var(--black-color);
+    padding: 10px;
+}
+
+/* 상위 검색결과 */
+.searchResult .title {
+    display: flex;
+    font-size: var(--font-large);
+}
+
+/* 상위 검색결과에 표시되는 정보 */
+.searchResult .item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*  상위 검색결과 앨범커버 사진 */
+.searchResult .item img {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+}
+
+/*  상위 검색 결과 표기되는 텍스트 정보 */
+.searchResult .item .info {
+    /*  display: flex; */
+    /*   flex-direction: column; */
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+/* 노래 카테고리 */
+.songs {
+    color: white;
+    position: absolute;
+    width: 1000px;
+    top: 320px;
+    left: 450px;
+    background-color: var(--black-color);
+    padding: 10px;
+}
+
+.songs .songtitle {
+    display: flex;
+    font-size: var(--font-large);
+}
+
+/*  노래 검색결과 표기되는 정보 */
+.songs .item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: var(--font-small);
+    border-bottom: 1px solid darkgray;
+}
+
+/*  노래 앨범 커버 사진 */
+.songs .item img {
+    width: var(--albumcover-size);
+    height: var(--albumcover-size);
+}
+
+/* 노래 검색 결과  텍스트 정보 */
+.songs .item .info {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    /* border-bottom: 1px solid black; */
+}
+
+/* 전체보기 버튼 */
+.songs .seeAll {
+    color: white;
+    background-color: var(--black-color);
+    font-size: var(--font-small);
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* 동영상 카테고리 */
+.video {
+    color: white;
+    position: absolute;
+    width: 1000px;
+    top: 665px;
+    left: 450px;
+    color: white;
+    background-color: var(--black-color);
+    padding: 10px;
+}
+
+
+.video .videotitle {
+    /* display: flex; */
+    font-size: var(--font-large);
+}
+
+
+.video .item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: var(--font-small);
+    border-bottom: 1px solid darkgray;
+}
+
+/* 동영상 커버 사진 */
+.video .item img {
+    width: var(--albumcover-size);
+    height: var(--albumcover-size);
+}
+/*  동영상 검색 결과 텍스트 정보 */
+.video .item .info {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    /* border-bottom: none; */
+}
+
+/*  전체보기 버튼 */
+.video .seeAll {
+    color: white;
+    background-color: var(--black-color);
+    font-size: var(--font-small);
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+}

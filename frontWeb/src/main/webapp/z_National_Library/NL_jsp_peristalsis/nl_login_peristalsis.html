@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="Z01_National_Library.joinMem_DB_con"
+	import="Z01_National_Library.vo.vo_joinMem"%>
+<%
+joinMem_DB_con dao = new joinMem_DB_con();
+String id = request.getParameter("username");
+String pass = request.getParameter("password");
+
+vo_joinMem mem = dao.login(id, pass);
+boolean isSuccess = mem != null;
+
+if (isSuccess) {
+	String username = mem.getId();
+	String password = mem.getPass();
+}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function login() {
+	var idOb = document.querySelector("[name = id]")
+	var passOb = document.querySelector("[name = pass]")
+	if (idOb.value == "") {
+		alert("아이디를 입력하세요")
+		idOb.focus() // 아이디에 위치  시킴
+		return false;
+	}
+	if (passOb.value == "") {
+		alert("패스워드를 입력하세요")
+		passOb.focus() // 패스워드에 위치  시킴
+		return false;
+	}
+
+}
+</script>
+
+</head>
+<body>
+<form onsubmit = "return login()">
+<h2>아이디:<input type = "text" name = "username" size = "10px"></h2>
+<h2>패스워드:<input type = "text" name = "password" size = "10px"></h2>
+<input type = "submit" value = "로그인"/>
+</form>
+</body>
+</html>

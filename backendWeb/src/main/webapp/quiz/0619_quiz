@@ -1,0 +1,69 @@
+문제 1:
+form의 하위 객체는 무엇인가요?
+a) 서버에 데이터를 전송하는 UI 태그 및 객체 # form 하단에 들어가는 
+b) 클라이언트에게 데이터를 전달하는 태그 및 객체
+c) 서버에서 데이터를 처리하는 태그 및 객체
+d) 클라이언트의 입력을 받아 처리하는 태그 및 객체
+
+문제 2:
+form 요소 객체를 사용하여 전송 이벤트를 처리할 때 어떤 역할을 하는 것인가요?
+a) 화면에 입력 폼을 만들어 주는 역할
+b) 서버로 데이터를 전송하는 쿼리 문자열을 생성해주는 역할 # 
+c) 클라이언트의 입력 값을 검증해주는 역할
+d) 클라이언트에게 입력 값을 보여주는 역할
+
+문제 3:
+query string과 form 요소 객체의 속성을 비교했을 때 어떤 내용이 일치하는가요?
+a) query string과 name 속성값이 일치함 #
+b) query string과 value 속성값이 일치함
+c) query string과 form 요소 객체의 태그명이 일치함
+d) query string과 form 요소 객체의 id 속성값이 일치함
+
+문제 4:
+위의 코드에서 전송되는 대상은 어디인가요?
+a) a02_formReceive.jsp
+b) a03_formRev.jsp
+c) action 속성에 지정된 페이지 
+d) submit 버튼의 onclick 이벤트 #
+
+문제 5:
+위의 코드에서 어떤 데이터가 전송되는가요?
+a) 전송할 이름 -- 전달이 되지 않기 때문에 
+b) 물건명과 가격 # B가 가장 적합한 답
+c) 가격
+d) 물건명
+
+문제 6:
+a03_formRev.jsp에서는 어떤 데이터를 받아서 출력하게 될까요?
+a) 물건명
+b) 가격
+c) pname과 price #
+d) a03_formRev.jsp 페이지의 이름
+
+문제 7:
+form을 사용하여 데이터를 전송할 때 어떤 메서드를 사용해야 하나요?
+a) GET #
+b) POST 
+c) SEND
+d) UPDATE
+
+문제 8:
+form 요소에서 사용되는 input 태그의 type 속성으로 올바르게 채워 넣은 것은 무엇인가요?
+a) text # 
+b) submit #
+c) button
+d) input
+
+문제 9:
+form 요소에서 값을 입력할 때 사용되는 태그는 무엇인가요?
+a) input #
+b) form
+c) submit
+d) action
+
+문제 10:
+form 요소에서 값을 전송할 때 사용되는 태그는 무엇인가요? (파란색 태그 초록색 속성)
+a) input #
+b) form
+c) submit #
+d) action 
