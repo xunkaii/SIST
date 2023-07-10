@@ -1,0 +1,46 @@
+private Connection con;
+private PreparedStatement pstmt;
+private ResultSet rs;
+
+public List<Employee> getEmpList(Map<String, String> sch) {
+    List<Employee> elist = new ArrayList<>();
+    String sql = "SELECT * FROM EMPLOYEES WHERE FIRST_NAME || last_name LIKE ? AND salary BETWEEN ? AND ?";
+    
+    try {
+        con = DB.con();
+        pstmt = con.prepareStatement(sql);
+        
+        // 검색어 조건 설정
+        pstmt.setString(1, "%" + sch.get("name") + "%");
+        pstmt.setDouble(2, Double.parseDouble(sch.get("minSal")));
+        pstmt.setDouble(3, Double.parseDouble(sch.get("maxSal")));
+        
+        rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            elist.add(new Employee(
+                rs.getInt("employee_id"),
+                rs.getString("first_name"),
+                rs.getString("last_name"),
+                rs.getString("email"),
+                rs.getString("phone_number"),
+                rs.getDate("hire_date"),
+                rs.getString("job_id"),
+                rs.getDouble("salary"),
+                rs.getDouble("commission_pct"),
+                rs.getInt("manager_id"),
+                rs.getInt("department_id")
+            ));
+        }
+        
+    } catch (SQLException e) {
+        System.out.println("DB 관련 예외: " + e.getMessage());
+    } catch (Exception e) {
+        System.out.println("기타 예외: " + e.getMessage());
+    } finally {
+        DB.close(rs, pstmt, con);
+    }
+    
+    return elist;
+}
+

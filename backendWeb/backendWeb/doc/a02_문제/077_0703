@@ -1,0 +1,59 @@
+[1단계:코드] 1. 1부터 10까지의 숫자 중 홀수만 출력하세요.
+[1단계:코드] 2. 배열에 저장된 동물 이름을 출력하세요.
+[1단계:코드] 3. JSTL을 사용하여 나이를 입력받아, age 변수가 18 이상인 경우 "성인입니다"라는 메시지를 출력하고, 
+	그렇지 않은 경우 "미성년자입니다"라는 메시지를 출력해야 합니다.
+[1단계:코드] 4. backendWeb.a01_dao.A05_MemberDao의  List<Member> mlist() 메서드를 이용하여, MVC패턴으로 회원정보를 출력하세요.
+
+
+
+[1단계:코드] 1. 1부터 10까지의 숫자 중 홀수만 출력하세요.
+
+```jsp
+<c:forEach var="num" begin="1" end="10" step="1">
+  <c:if test="${num % 2 != 0}">
+    ${num} 
+  </c:if>
+</c:forEach>
+```
+
+[1단계:코드] 2. 배열에 저장된 동물 이름을 출력하세요.
+
+```jsp
+<c:set var="animals" 
+value="${['고양이', '강아지', '토끼', '사자', '코끼리']}" />
+
+<c:forEach var="animal" items="${animals}">
+  ${animal} 
+</c:forEach>
+```
+
+[1단계:코드] 3. JSTL을 사용하여 나이를 입력받아, age 변수가 18 이상인 경우 "성인입니다"라는 메시지를 출력하고, 그렇지 않은 경우 "미성년자입니다"라는 메시지를 출력해야 합니다.
+
+```jsp
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Scanner" %>
+
+<input name="age" value="0"/>
+<c:choose>
+  <c:when test="${param.age >= 18}">
+    성인입니다.
+  </c:when>
+  <c:otherwise>
+    미성년자입니다.
+  </c:otherwise>
+</c:choose>
+```
+
+[1단계:코드] 4. backendWeb.a01_dao.A05_MemberDao의  List<Member> mlist() 메서드를 이용하여, MVC패턴으로 회원정보를 출력하세요.
+#controller
+request.setAttribute("memberList", dao.mlist());
+
+
+```jsp
+
+<c:forEach var="member" items="${memberList.mlist()}">
+  회원 이름: ${member.name}<br/>
+  회원 나이: ${member.age}<br/>
+  회원 성별: ${member.gender}<br/><br/>
+</c:forEach>
+```

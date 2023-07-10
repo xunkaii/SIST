@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        # DOM객체 함수를 통해 매개변수로 전달 
+        */
+        function callDom(obj){
+            console.log(obj)
+            for(var pro in obj){
+                console.log(pro+":"+obj[pro])
+            }
+            obj.innerText="변신!!"
+            obj.align="center" // <h2 align="center"
+            obj.style.background="pink";
+            // 다른 객체 접근
+            var h3Obj = document.querySelector('h3')
+            h3Obj.align="right"
+            // 
+        }
+        // h3  무지개 색상 7가지 리스트해서, 클릭시, 글자 색상을 변경하게
+        //   중앙정렬, 처리해보세요. DOM 전달.
+        function chRed(obj){
+            obj.align="center"
+            obj.style.color = "red"
+        }
+        function chOrange(obj){
+            obj.align="center"
+            obj.style.color = "orange"            
+        }
+        function chColor(obj, color){
+            obj.align="center"
+            obj.style.color = color
+        }
+    </script>
+</head>
+<body>
+    <h3 onclick="chRed(this)">빨</h3>
+    <h3 onclick="chOrange(this)">주</h3>
+    <h3 onclick="chColor(this,'yellow')">노</h3>
+    <h3 onclick="chColor(this,'green')">초</h3>
+    <h3 onclick="chColor(this,'blue')">파</h3>
+    <h3 onclick="chColor(this,'navy')">남</h3>
+    <h3 onclick="chColor(this,'purple')">보</h3>
+    <h2 onclick="callDom(this)">DOM객체 전달</h2><!-- 태그를 object화 한것이 DOM-->
+    <!-- this : 클릭했을 때, callDom 함수에 매개변수 h2
+    모든 구성요소와 함께 전달. -->
+    <h3>다른 객체</h3>
+
+</body>
+    <script>
+        /*
+        #  
+        */
+        document.querySelector("h2").innerText="클릭하세요"
+
+    </script>
+</html>

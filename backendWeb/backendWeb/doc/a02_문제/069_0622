@@ -1,0 +1,412 @@
+1. 액션태그의 종류와 차이점, 제2정규화, 계층적 sql에 대한 이해와 의문사항을 조원들과 확인하세요.
+2. include로 all.jsp 하위에 top.jsp, main.jsp, bottom.jsp를 만들어서 포함 시켜 출력하되
+   request.getParameter(), request.setAttribute()데이터 설정으로 main.jsp에서 로그인 id pass를 만들어서
+   all.jsp를 호출하게 할때, himan//7777이면  top.jsp에서는 id를 보내어 @@ 로그인 중 그외는 login하세요 라고
+   표시되게 처리
+3. forward 액션을 이용하여, 로딩된 구구단의 임의의 문제가 맞으면 정답페이지로 이동 그렇지 않으면 다시 문제풀이 페이지로 처리되게 하세요.
+4. 아래 내용을 제2정규화를 정리하세요
+1) 도서관의 도서 대출 테이블
+| 대출ID | 도서ID | 도서제목 | 대출일자 | 회원ID | 회원이름 |
+2) 랜트카 시스템의 차량 랜트 테이블
+| 랜트ID | 차량ID | 차량모델 | 랜트일자 | 고객ID | 고객이름 |
+3) SNS의 좋아요 테이블
+| 좋아요ID | 게시글ID | 게시글제목 | 좋아요시간 | 사용자ID | 사용자이름 |
+5. 계층적 구조로 게시물과 답글을 작성하고, 계층적 sql을 이용해서 처리하세요..
+
+1. 액션태그의 종류와 차이점:
+- `<jsp:include>`: 다른 JSP 파일을 현재 JSP에 포함시킵니다. 포함된 JSP 파일의 내용이 현재 JSP 파일에 그대로 복사되어 포함됩니다.
+- `<jsp:forward>`: 다른 JSP 페이지로 제어를 전달합니다. 현재 JSP 페이지의 실행을 중단하고, 전달된 JSP 페이지로 제어가 이동합니다.
+	  request범위의 내용 전달..
+	  	request.getParameter("") 
+	  	request.getAttribute("") 
+	  	
+제2정규화 (Second Normal Form):
+- 제2정규화는 함수적 종속성(FD)을 이용하여 데이터베이스 테이블을 정규화하는 과정입니다.
+- 테이블에서 부분 함수적 종속성을 제거하여 테이블의 중복성을 줄이고 데이터의 일관성을 유지합니다.
+
+계층적 SQL (Hierarchical SQL):
+- 계층적 SQL은 데이터베이스에서 계층 구조로 구성된 데이터를 조회하기 
+  위한 SQL 구문입니다.
+- 주로 트리 구조 데이터를 조회하고 조작하는 데 사용됩니다.
+
+2. include로 all.jsp 하위에 top.jsp, main.jsp, bottom.jsp를 
+	만들어서 포함시켜 출력하는 예제 코드:
+
+all.jsp:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title>All Page</title>
+</head>
+<%
+String id = request.getParameter("id");
+String pass = request.getParameter("pass");
+String sndMsg="로그인하세요";
+if(id != null){
+	if(id.equals("himan") && pass.equals("7777")){
+		sndMsg=id+"님 로그인 중";
+	}else{
+%>
+	<script>alert("로그인 실패")</script>
+<%
+	}
+}
+%>
+<body>
+    <jsp:include page="top.jsp" >
+    	<jsp:param name="msg" value="<%=sndMsg%>"/>
+    </jsp:include>
+    <jsp:include page="main.jsp" />
+    <jsp:include page="bottom.jsp" />
+</body>
+</html>
+
+
+   request.getParameter(), request.setAttribute()데이터 설정으로 main.jsp에서 로그인 id pass를 만들어서
+   all.jsp를 호출하게 할때, himan//7777이면  
+   top.jsp에서는 id를 보내어 @@ 로그인 중 그외는 login하세요 라고
+   표시되게 처리
+
+```
+
+top.jsp:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<div>
+	<h2><%=request.getParameter("msg")%></h2>;
+
+
+    <%-- request.getParameter()로 id와 pass를 받아옴 --%>
+    <%-- id와 pass가 himan//7777이면 id 값을 @@로 설정, 그 외는 "로그인하세요"로 설정 --%>
+    <% String id = request.getParameter("id");
+       String pass = request.getParameter("pass");
+       if (id != null && pass != null && id.equals("himan") && pass.equals("7777")) {
+           request.setAttribute("loginId", "@@");
+       } else {
+           request.setAttribute("loginId", "로그인하세요");
+       }
+    %>
+    <p>ID: <%= request.getAttribute("loginId") %></p>
+</div>
+```
+
+main.jsp:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<div>
+    <h1>Main Page</h1>
+    <form action="all.jsp">
+    	<input name="id">
+    	<input name="pass">
+    	<input type="submit">
+    </form>
+    <%-- 데이터 설정으로 인해 top.jsp에서 ID 출력 --%>
+</div>
+```
+
+bottom.jsp:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<div>
+    <h3>Bottom Page</h3>
+</div>
+```
+
+3. forward 액션을 이용하여, 로딩된 구구단의 임의의 문제가 맞으면 정답 페이지로 이동하고, 그렇지 않으면 다시 문제풀이 페이지로 처리하는 예제 코드:
+
+문제 페이지:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%-- 임의의 문제 생성 --%>
+<%
+    int num1 = (
+
+int)(Math.random() * 9) + 1;
+    int num2 = (int)(Math.random() * 9) + 1;
+    int answer = num1 * num2;
+    
+    // 문제와 정답을 request에 저장
+    request.setAttribute("num1", num1);
+    request.setAttribute("num2", num2);
+    request.setAttribute("answer", answer);
+%>
+<html>
+<head>
+    <title>구구단 문제</title>
+</head>
+<body>
+    <h1>구구단 문제</h1>
+    <p><%= num1 %> × <%= num2 %> = ?</p>
+    <form action="answer.jsp" method="post">
+        <input type="text" name="userAnswer" required>
+        <input type="submit" value="확인">
+    </form>
+</body>
+</html>
+```
+
+정답 페이지 (answer.jsp):
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%
+    // 사용자가 입력한 답
+    int userAnswer = Integer.parseInt(request.getParameter("userAnswer"));
+    // 정답
+    int answer = (int)request.getAttribute("answer");
+    
+    if (userAnswer == answer) {
+        // 정답일 경우
+        response.sendRedirect("correct.jsp");
+    } else {
+        // 오답일 경우
+        response.sendRedirect("wrong.jsp");
+    }
+%>
+```
+
+correct.jsp:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title>정답</title>
+</head>
+<body>
+    <h1>정답입니다!</h1>
+</body>
+</html>
+```
+
+wrong.jsp:
+```html
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title>오답</title>
+</head>
+<body>
+    <h1>틀렸습니다!</h1>
+    <a href="problem.jsp">다시 풀기</a>
+</body>
+</html>
+```
+
+4. 제2정규화를 적용한 예제 테이블:
+
+1) 도서관의 도서 대출 테이블
+| 대출ID | 도서ID | 도서제목 | 대출일자 | 회원ID | 회원이름 |
+- 제2정규화 적용:
+    - 테이블을 분리하여 대출 정보와 도서, 회원 정보를 별도의 테이블로 나눕니다.
+    - 대출 테이블:
+      | 대출ID | 대출일자 | 회원ID |
+    - 도서 테이블:
+      | 도서ID | 도서제목 |
+    - 회원 테이블:
+      | 회원ID | 회원이름 |
+
+2) 랜트카 시스템의 차량 랜트 테이블
+| 랜트ID | 차량ID | 차량모델 | 랜트일자 | 고객ID | 고객이름 |
+- 제2정규화 적용:
+    - 테이블을 분리하여 랜트 정보와 차량, 고객 정보를 별도의 테이블로 나눕니다.
+    랜트 테이블:
+      | 랜트ID | 랜트일자 | 차량ID | 고객ID |
+    - 차량 테이블:
+      | 차량ID | 차량모델 |
+    - 고객 테이블:
+      | 고객ID | 고객이름 |
+
+3) SNS의 좋아요 테이블
+| 좋아요ID | 게시글ID | 게시글제목 | 좋아요시간 | 사용자ID | 사용자이름 |
+- 제2정규화 적용:
+    - 테이블을 분리하여 좋아요 정보와 게시글, 사용자 정보를 별도의 테이블로 나눕니다.
+    - 좋아요 테이블:
+      | 좋아요ID | 좋아요시간 | 게시글ID | 사용자ID |
+    - 게시글 테이블:
+      | 게시글ID | 게시글제목 |
+    - 사용자 테이블:
+      | 사용자ID | 사용자이름 |
+
+5. 계층적 구조로 게시물과 답글을 작성하고, 계층적 SQL을 이용해서 처리하는 예제 코드는 아래와 같습니다:
+
+게시물과 답글을 저장하기 위한 Oracle 테이블을 생성하고, 계층적 SQL을 사용하여 출력하는 예제를 제시합니다.
+
+테이블 구조:
+
+```sql
+-- 게시물 테이블
+CREATE TABLE posts (
+  post_id NUMBER,
+  title VARCHAR2(100),
+  content VARCHAR2(4000),
+  parent_id NUMBER,
+  CONSTRAINT posts_pk PRIMARY KEY (post_id),
+  CONSTRAINT posts_fk FOREIGN KEY (parent_id) REFERENCES posts (post_id)
+);
+
+-- 시퀀스 생성
+CREATE SEQUENCE posts_seq START WITH 1 INCREMENT BY 1;
+```
+
+데이터 입력:
+
+```sql
+-- 게시물 데이터 입력
+INSERT INTO posts (post_id, title, content, parent_id) 
+	VALUES (posts_seq.nextval, '게시물 1', '첫 번째 게시물입니다.', NULL);
+INSERT INTO posts (post_id, title, content, parent_id)
+	 VALUES (posts_seq.nextval, '게시물 2', '두 번째 게시물입니다.', NULL);
+INSERT INTO posts (post_id, title, content, parent_id) 
+	VALUES (posts_seq.nextval, '답글 1-1', '첫 번째 게시물의 답글입니다.', 1);
+INSERT INTO posts (post_id, title, content, parent_id)
+	 VALUES (posts_seq.nextval, '답글 1-2', '첫 번째 게시물의 두 번째 답글입니다.', 1);
+INSERT INTO posts (post_id, title, content, parent_id)
+ VALUES (posts_seq.nextval, '답글 2-1', '두 번째 게시물의 답글입니다.', 2);
+```
+
+
+
+
+계층적 SQL 쿼리:
+
+```sql
+SELECT
+    LPAD(' ', (LEVEL - 1) * 4, ' ') || title AS title,
+    content
+FROM
+    posts
+START WITH
+    parent_id IS NULL -- 최상위 게시물만 시작점으로 설정
+CONNECT BY PRIOR
+    post_id = parent_id
+ORDER SIBLINGS BY
+    post_id ASC;
+```
+
+<1조 입니다>
+<%--
+2. include로 all.jsp 하위에 top.jsp, main.jsp, bottom.jsp를 만들어서 포함 시켜 출력하되
+   request.getParameter(), request.setAttribute()데이터 설정으로 main.jsp에서 로그인 id pass를 만들어서
+   all.jsp를 호출하게 할때, himan//7777이면  top.jsp에서는 id를 보내어 @@ 로그인 중 그외는 login하세요 라고
+   표시되게 처리
+   all.jsp --%>
+ <%
+    String id = request.getParameter("id"); if(id==null)id="";
+    String pass = request.getParameter("pass"); if(pass==null)pass="";
+ %>
+    <div class="container mt-3">
+       <h2>ALL</h2>
+       <jsp:include page="top.jsp">
+           	<jsp:param name="id" value="<%=id %>"/>
+          	<jsp:param name="pass" value="<%=pass %>"/>      
+       </jsp:include>
+       <jsp:include page="main.jsp">
+
+       </jsp:include>         
+       <jsp:include page="bottom.jsp"/>
+    </div>
+    <%--
+    top.jsp
+     <%
+    String id = request.getParameter("id"); if(id==null)id="";
+    String pass = request.getParameter("pass"); if(pass==null)pass="";
+    String isLog = "I";
+    if(id!=null){
+       if(id.equals("himan")&&pass.equals("7777")){
+          isLog = "T";
+       }else{
+          isLog = "F";
+       }
+    }
+    
+ %>
+    <script type="text/javascript">
+       var isLog = "<%=isLog%>"
+       var id = "<%=id%>"
+       
+       if(id!=='I'){
+          if(isLog=='T'){
+             alert("<%=id %> 로그인 중")
+          }
+          if(isLog=='F'){
+             alert("로그인 하세요")
+          }
+       }
+ </script>
+       main.jsp
+        <h2>메인페이지 로그인</h2>
+       <form action="all.jsp" method="post">
+            <div class="mb-3 mt-3">
+            <label for="id">아이디:</label>
+            <input type="text" class="form-control" 
+              id="id" placeholder="아이디 입력" name="id">
+            </div>
+            <div class="mb-3 mt-3">
+            <label for="pass">패스워드:</label>
+            <input type="password" class="form-control" 
+              id="pass" placeholder="패스워드 입력" name="pass">
+            </div>
+            <button type="submit" class="btn btn-primary">로그인</button>
+        </form>  
+     --%>
+    <div class="container mt-3">
+    	<h2>구구단 문제</h2>
+    	<%
+    	int rgrade = (int)(Math.random()*8+2);
+    	int rcnt = (int)(Math.random()*9+1);
+    	%>
+    	<form class="form" action="" method="post">
+    	    <div class="mb-3 mt-3 d-inline-flex">
+	            <input type="text" name="grade" class="form-control w-25" 
+	      	     id="grade"  value="<%=rgrade%>" size="1"  >  
+	      	     <span class="input-group-text">x</span>
+	      	    <input type="text"  name="cnt" class="form-control w-25" 
+	      	     id="cnt"  value="<%=rcnt%>" >  
+	      	    <span class="input-group-text">=</span> 
+	            <input type="text"  name="result" class="form-control w-25" 
+	      	     id="result"  value="">  	
+	         	<button type="submit" class="btn btn-primary w-25">정답확인</button>
+         	</div>
+     	</form>
+      	<%
+		String gradeS = request.getParameter("grade");      	
+		String cntS = request.getParameter("cnt");
+		String resultS = request.getParameter("result");
+		if(resultS!=null&&!resultS.equals("")){
+			int grade = Integer.parseInt(gradeS);	
+			int cnt = Integer.parseInt(cntS);
+			int result = Integer.parseInt(resultS);
+			if(grade*cnt == result){
+		%>
+			<jsp:forward page="a09_cor.jsp"/>
+		<%
+			}else{
+		%>
+			<script>
+				alert('오답\n다시 풀어보세요');
+				// 이전 페이지에 입력되어 전달한 값을 DOM의 속성으로 할당. 
+				document.querySelector("#grade").value="<%=gradeS%>";
+				document.querySelector("#cnt").value="<%=cntS%>";
+			</script>
+		<%		
+			}
+      	%>
+      	<%}%>
+      	<script type="text/javascript">
+      		document.querySelector("#result").focus();
+      	</script>
+      	
+    	<h2>정답 성공하셨습니다.^^</h2>
+    	<h3>
+    		<%--
+    		forward처리시..
+    		 request scope의 데이터를 받을 수 있다. --%>
+    		<%=request.getParameter("grade") %> x
+    		<%=request.getParameter("cnt") %> =
+    		<%=request.getParameter("result") %> 
+    	</h3>
+    	<h3 onclick="location.href='a08_gugu.jsp'">다시 문제 풀러가기!!</h3>
+ 	
+ 	
+ 	      	
+

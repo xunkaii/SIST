@@ -1,0 +1,159 @@
+[문제 1]
+다음 중 JSP에서 요청값으로 호출된 내용을 여러 개의 데이터로 VO 객체를 생성하는 경우가 많은 이유는 무엇인가요?
+a) 요청값을 VO 객체로 변환하여 다른 모듈에 매개값으로 전달하기 위해서입니다.
+b) VO 객체를 사용하면 데이터를 보다 효율적으로 처리할 수 있기 때문입니다.
+c) JSP에서는 VO 객체를 사용하여 데이터를 조작하기 위한 기능을 제공하기 때문입니다.
+d) VO 객체를 생성하는 것은 관례적인 방법이기 때문입니다.
+
+[문제 2]
+다음 중 요청값으로 전달된 id가 member 테이블에 있는지 여부를 확인하는 코드의 일부입니다. 빈칸에 들어갈 코드를 채우세요.
+```java
+String id = request.getParameter("id");
+A05_MemberDao dao = new A05_MemberDao();
+boolean isMember = dao.________(id);
+```
+a) checkMember(id) : 아이디값을 맞는지 확인 
+b) validateMember(id) : 아이디 형식적 유효성 확인
+c) getMember(id) : 아이디값을 특정 Member객체 생성
+d) findMember(id) : 아이디가 있는지 확인메서드
+
+[문제 3]
+JSP에서 사용되는 Session의 범위에 대한 설명으로 옳지 않은 것은 무엇인가요?
+a) Session 범위는 웹 브라우저와 관련된 영역으로, 서버와의 연결 상태에 따라 지속적으로 유지됩니다.
+b) Session 범위는 서버의 메모리에 저장되며, 웹 애플리케이션 전역에서 데이터를 공유할 수 있습니다.
+c) Session 범위에 저장된 데이터는 모든 JSP 페이지에서 접근하여 사용할 수 있습니다.
+d) Session 범위에 저장하기 위해서는 session 객체의 setAttribute() 메서드를 사용해야 합니다.
+
+[문제 4]
+JSP에서 Session 범위에 문자열 데이터를 저장하기 위한 코드의 일부입니다. 빈칸에 들어갈 코드를 채우세요.
+```jsp
+<%
+session.setAttribute("key", ________);
+%>
+```
+a) "value"
+b) value
+c) new Value()
+d) new Object()
+
+[문제 5]
+다음 중 Session 범위에서 데이터를 삭제하기 위한 메서드는 무엇인가요?
+a) session.removeAttribute("key")
+b) session.remove("key")
+c) session.deleteAttribute("key")
+d) session.delete("key")
+
+
+[문제 6]
+JSP에서 Session 범위의 데이터를 가져올 때, 저장된 데이터의 타입이 Object인 경우 다음 중 옳은 방법은 무엇인가요?
+a) (String) session.getAttribute("key")
+b) (int) session.getAttribute("key")
+c) (boolean) session.getAttribute("key")
+d) (Person) session.getAttribute("key")
+
+[문제 7]
+JSP에서 Session 범위의 데이터를 가져올 때, 저장된 데이터의 타입이 String인 경우 다음 중 옳은 방법은 무엇인가요?
+a) (String) session.getAttribute("key")
+b) (int) session.getAttribute("key")
+c) (boolean) session.getAttribute("key")
+d) (Person) session.getAttribute("key")
+
+
+
+
+
+[문제 1]
+다음 중 JSP에서 요청값으로 호출된 내용을 여러 개의 데이터로 VO 객체를 생성하는 경우가 많은 이유는 무엇인가요?
+a) 요청값을 VO 객체로 변환하여 다른 모듈에 매개값으로 전달하기 위해서입니다.
+b) VO 객체를 사용하면 데이터를 보다 효율적으로 처리할 수 있기 때문입니다.
+c) JSP에서는 VO 객체를 사용하여 데이터를 조작하기 위한 기능을 제공하기 때문입니다.
+d) VO 객체를 생성하는 것은 관례적인 방법이기 때문입니다.
+
+정답: a) 요청값을 VO 객체로 변환하여 다른 모듈에 매개값으로 전달하기 위해서입니다.
+	ex) dao의 기능처리 메서드로 처리할 때..
+		검색시  public List<Emp> getEmpList(Emp sch)
+		등록시  public void inserEmp(Emp ins)
+해설: JSP에서 요청값을 여러 개의 데이터로 VO(Value Object) 객체를 생성하는 이유 중 하나는, 요청값을 VO 객체로 변환하여 다른 모듈에 매개값으로 전달하기 위함입니다. 이렇게 함으로써 다른 모듈에서는 요청값을 직접 파싱하거나 처리할 필요 없이, VO 객체를 통해 요청값을 받아 처리할 수 있습니다.
+     VO 객체를 사용하면 데이터를 보다 효율적으로 처리할 수 있기 때문입니다.
+     ==> 맞지만, 구체적으로 어떻게 처리하는 내용이 없어서 정답에는 2순위
+[문제 2]
+다음 중 요청값으로 전달된 id가 member 테이블에 있는지 여부를 확인하는 코드의 일부입니다. 빈칸에 들어갈 코드를 채우세요.
+```java
+String id = request.getParameter("id");
+A05_MemberDao dao = new A05_MemberDao();
+boolean isMember = dao.________(id);
+```
+a) checkMember(id) : 아이디값을 맞는지 확인 
+b) validateMember(id) : 아이디 형식적 유효성 확이
+c) getMember(id) : 아이디값을 특정 Member객체 생성
+d) findMember(id) : 아이디가 있는지 확인메서드
+
+정답: d) findMember(id) : 아이디가 있는지 확인메서드
+해설: DAO(Data Access Object) 클래스에서는 데이터베이스와의 연동을 담당하므로, 주로 해당 아이디를 가진 회원이 있는지 확인하는 'findMember(id)'와 같은 메서드를 사용합니다.
+
+[문제 3]
+JSP에서 사용되는 Session의 범위에 대한 설명으로 옳지 않은 것은 무엇인가요?
+a) Session 범위는 웹 브라우저와 관련된 영역으로, 서버와의 연결 상태에 따라 지속적으로 유지됩니다.
+b) Session 범위는 서버의 메모리에 저장되며,
+	 웹 애플리케이션 전역에서 데이터를 공유할 수 있습니다.
+	client에 저장되는 것은 Cookei
+c) Session 범위에 저장된 데이터는 모든 JSP 페이지에서 접근하여 사용할 수 있습니다.
+d) Session 범위에 저장하기 위해서는 session 객체의 
+		setAttribute() 메서드를 사용해야 합니다.
+
+정답: X : 모두다 맞다. 
+Session 범위에 저장하기 위해서는 session 객체의 setAttribute() 메서드를 사용해야 합니다.
+해설: setAttribute() 메서드는 session, request, pageContext 등의 객체에 공통으로 사용됩니다. 따라서, Session 범위에 데이터를 저장하기 위해 꼭 session 객체의 setAttribute() 메서드를 사용해야 한다는 설명은 틀린 것입니다.
+
+[문제 4]
+JSP에서 Session 범위에 문자열 데이터를 저장하기 위한 코드의 일부입니다.
+ 빈칸에 들어갈 코드를 채우세요.
+```jsp
+<%
+session.setAttribute("key", ________);
+%>
+```
+a) "value"
+b) value
+c) new Value()
+d) new Object()
+
+정답: a) "value"
+해설: session.setAttribute("key", "value");는 session에 "key"라는 이름으로 "value"라는 값을 저장하는 코드입니다. 따라서 옳은 코드는 a) "value"입니다.
+
+[문제 5]
+다음 중 Session 범위에서 데이터를 삭제하기 위한 메서드는 무엇인가요?
+a) session.removeAttribute("key")
+b) session.remove("key")
+c) session.deleteAttribute("key")
+d) session.delete("key")
+
+정답: a) session.removeAttribute("key")
+해설: 세션 범위에서 데이터를 삭제하려면 session 객체의 removeAttribute() 메서드를 사용합니다.
+
+[문제 6]
+JSP에서 Session 범위의 데이터를 가져올 때, 저장된 데이터의 타입이
+	 Object인 경우 다음 중 옳은 방법은 무엇인가요?
+a) (String) session.getAttribute("key")
+b) (int) session.getAttribute("key")
+	Object ==> Integer ==> int
+	          객체casting   unboxing
+	int num01 = (Integer)
+c) (boolean) session.getAttribute("key")
+	(Boolean)
+d) (Person) session.getAttribute("key")
+
+정답: d) (Person) session.getAttribute("key")
+해설: 저장된 데이터의 타입이 Object인 경우, 가져올 때 캐스팅이 필요합니다. 예를 들어, 저장된 데이터의 타입이 Person이라면 (Person)으로 캐스팅해야 합니다.
+
+[문제 7]
+JSP에서 Session 범위의 데이터를 가져올 때, 저장된 데이터의 타입이 String인 경우 다음 중 옳은 방법은 무엇인가요?
+a) (String) session.getAttribute("key")
+b) (int) session.getAttribute("key")
+c) (boolean) session.getAttribute("key")
+d) (Person) session.getAttribute("key")
+
+정답: a) (String) session.getAttribute("key")
+
+
+  

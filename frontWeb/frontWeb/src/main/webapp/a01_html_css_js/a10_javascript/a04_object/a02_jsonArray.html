@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트</title>
+    <script>
+        /*
+        #  json 객체의 배열형 데이터 처리
+        1. json 객체 선언 형식
+            var 객체명 = {속성:속성값,,,}
+        2. 객체형 배열
+            1) 선언/객체생성
+            var arr1 = []
+            var arr2 = [{name:"사과", price:12000},{name:"바나나", price:4500}]
+            2) 추가 할당
+                arr1[0] = {name:"홍길동", age:25}
+                arr2.push({name:"오렌지", price:2000})
+                    배열.push(객체) : 마지막에 추가
+            3) 배열 객체의 호출
+                arr1[0] == {name:"홍길동", age:25}
+                arr1[0].name : 홍길동
+                var pro1 = arr2[1] // {name:"바나나", price:4500}
+                pro1.price : 4500
+            4) forEach를 통한 처리
+                arr2.forEach((fruit)=>{
+                    fruit.name // 반복문 단위객체를 가져와서 사용
+                    fruit.price
+                })
+
+        */
+    </script>
+</head>
+
+<body>
+    <h3>json 객체</h3>
+    <h3>json 객체</h3>
+    <h4>과일 객체</h4>
+    <h4>과일 객체</h4>
+    <h4>과일 객체</h4>
+    <h2>사원정보</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>사원번호</th>
+                <th>사원명</th>
+                <th>급여</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+    </table>
+
+</body>
+<script>
+    var arr1 = [] // 객체가 생성
+    arr1[0] = { name: "홍길동", age: 25 }
+    arr1.push({ name: "김길동", age: 28 })
+    var h3Arr = document.querySelectorAll("h3")
+    h3Arr[0].innerText = arr1[0].name + "," + arr1[0].age
+    h3Arr[1].innerText = arr1[1].name + "," + arr1[1].age
+    //  ex) arr2로 배열 선언 후, 과일 객체를 2개를 할당  h4에 출력처리하세요
+    var arr2 = [{ name: "사과", price: 12000 }]
+    arr2.push({ name: "바나나", price: 5600 })
+    arr2.push({ name: "키위", price: 15600 })
+    var h4Arr = document.querySelectorAll("h4")
+    var showOb = document.querySelector("#show")
+    arr2.forEach((fruit, idx) => {
+        showOb.innerHTML += `<h4>${idx + 1}) ${fruit.name},${fruit.price}</h4>`
+    })
+    // ex) json 배열로 사원객체 배열로 사원정보 3개를 만들고 위 테이블 lsit 정보에 출력하세요
+    var empList = []
+    empList.push({ empno: 7800, ename: "홍길동", sal: 200000 })
+    empList.push({ empno: 7801, ename: "김길동", sal: 200000 })
+    empList.push({ empno: 7802, ename: "신길동", sal: 200000 })
+    var tbDom = document.querySelector("table tbody")
+    empList.forEach((emp) => {
+        tbDom.innerHTML += `<tr><th>${emp.empno}</th><th>${emp.ename}</th><th>${emp.sal}</th></tr>`
+    })
+</script>
+
+</html>

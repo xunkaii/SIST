@@ -1,0 +1,222 @@
+1. 다음 중 Java에서 PreparedStatement 객체를 생성하는 방법은 무엇인가요?
+    SQLInjection, 속도
+    매개변수를 ?로 처리하여 sql을 먼저 보내고, 
+    매개변수를 전달.
+    A. con.prepareStatement(sql); #
+    	PreparedStatement pstmt = con.prepareStatement(sql); 
+    B. con.executePreparedStatement(sql);
+    C. con.createPreparedStatement(sql);
+    D. con.getPreparedStatement(sql);
+
+2. 다음 중 Java SQL 예외 처리에 대한 올바른 설명은 무엇인가요?
+
+    A. try-catch 구문 내에서 SQLException을 처리한다.#
+    B. SQL 에러를 방지하기 위해 예외를 처리하지 않는다.
+    C. SQL 예외는 항상 무시해야 한다.
+    D. SQLException은 RuntimeException 하위 클래스이다.
+    try{
+    
+    }catch(ClassNotFoundException e){
+    
+    }catch(SQLException e){ # DB 처리를 위한 예외 처리
+    
+    }catch(Exception e){
+    
+    }finally{
+    
+    }
+    
+    
+    
+
+3. Java에서 SQL 쿼리 실행 결과를 담는 객체는 무엇인가요?
+
+    A. Connection
+    B. PreparedStatement
+    C. ResultSet #
+    D. SQLException
+    ResultSet rs : select sql문일 때만 사용하는 객체.
+    rs = pstmt.executeQuery(); 
+    // 초기에 sql을 입력했기에 pstmt에서는 sql 매개변수 필요 없다.
+    rs.next()
+    rs.getString("컬럼명") select 컬럼명  : 주의 select 처리
+    	결과의 컬럼명
+    rs.getString(1) select 컬럼1, 컬럼2,... : 주의 select
+    	처리 결과의 순서 	
+4. PreparedStatement에서 쿼리의 특정 부분에 값을 설정하기 위해 사용하는 메서드는 무엇인가요?
+
+    A. set()
+    B. put()
+    C. setString()# 
+    D. insert()
+    String sql = "select * from where ename=? and deptno=?"
+    
+    pstmt.set데이터유형(순서, 매핑할데이터)
+    pstmt.setString(1, sch.getEname()); 객체를 넘겼을 때
+    pstmt.setInt(2, sch.get("deptno")); map을 넘겼을 때, key
+
+5. 다음 중 DB 연결 후 필요한 작업에 대한 올바른 순서는 무엇인가요?
+
+    A. Connection 객체 생성 → PreparedStatement 객체 생성 → SQL 쿼리 실행 → 결과 처리#
+    B. PreparedStatement 객체 생성 → Connection 객체 생성 → SQL 쿼리 실행 → 결과 처리
+    C. SQL 쿼리 실행 → Connection 객체 생성 → PreparedStatement 객체 생성 → 결과 처리
+    D. 결과 처리 → SQL 쿼리 실행 → PreparedStatement 객체 생성 → Connection 객체 생성
+
+6. "con.setAutoCommit(false);" 이 코드의 목적은 무엇인가요?
+
+    A. 자동으로 커밋되는 것을 방지하기 위해 #
+    	바로 반영하지 않고, 데이터를 처리가 정상적으로 되었을 때,
+    	commit이 되게하고, 혹 등록/수정/삭제시 예외가 발생할 시에는
+    	rollback을 하여 원복할 수 있게 처리하기 위해 설정 옵션 처리.
+    B. DB 연결을 자동으로 종료하기 위해
+    C. SQLException을 자동으로 처리하기 위해
+    D. SQL 쿼리를 자동으로 실행하기 위해
+    등록, 수정, 삭제시 트랜잭션의 대한 제어를 할 때, 사용한다.
+    우선 commit/rollback
+    
+
+7. SQL 쿼리를 실행한 후, 어떤 작업을 마지막으로 수행해야 하나요?
+
+    A. Connection, PreparedStatement, ResultSet을 닫는다.#
+    B. 새로운 PreparedStatement를 생성한다.
+    C. 새로운 SQL 쿼리를 작성한다.
+    D. DB에 다시 연결한다.
+    
+    모든 처리가 끝났 후에는 자원을 해제 해준다.
+    finally 구문안에서 만들어진 순서의 역순위로 
+    DB.close(rs,pstmt,con);
+    if(rs!=null){
+    	예외 처리 처리 안에
+    	rs.close()
+    }
+    if(pstmt!=null){
+    	예외 처리 처리 안에
+    	pstmt.close()
+    }    
+    if(con!=null){
+    	예외 처리 처리 안에
+    	con.close()
+    }    
+
+8. 다음 중 PreparedStatement 객체를 사용해 SQL 쿼리를 실행하는 방법은 무엇인가요?
+
+    A. pstmt.executeQuery(); #
+    B. pstmt.executeSQL();
+    C. pstmt.runQuery();
+    D. pstmt.performQuery();
+    
+    pstmt.executeQuery() : select 문제에서 사용
+    pstmt.executeUpdate() : insert, update, delete 사용시
+
+9. Java에서 SQL 트랜잭션을 원상복구 하는 명령어는 무엇인가요?
+   client와 DB서버와 안정성을 위해 처리 하는 내용.
+   자동commit방지: con.setAutocommit(false)
+   정상적 처리 : con.commit()
+   예외발생시 : con.rollback()
+    A. con.rollback();#
+    B. con.restore();
+    C. con.reset();
+    D. con.undo();
+
+10. "rs = pstmt.executeQuery();" 이 코드의 목적은 무엇인가요?
+
+    A. SQL 쿼리를 실행하고 그 결과를 ResultSet 객체에 저장하기 위해 #
+    B. SQL 쿼리를 저장하기 위해
+    C. PreparedStatement 객체를 초기화하기 위해
+    D. SQLException을 처리하기 위해
+
+정답:
+
+A. con.prepareStatement(sql);
+A. try-catch 구문 내에서 SQLException을 처리한다.
+C. ResultSet
+C. setString()
+A. Connection 객체 생성 → PreparedStatement 객체 생성 → SQL 쿼리 실행 → 결과 처리
+A. 자동으로 커밋되는 것을 방지하기 위해
+A. Connection, PreparedStatement, ResultSet을 닫는다.
+A. pstmt.executeQuery();
+A. con.rollback();
+A. SQL 쿼리를 실행하고 그 결과를 ResultSet 객체에 저장하기 위해
+
+
+1. 다음 중 `A04_PreParedDao` 클래스가 가지고 있는 필드는 무엇인가요?
+    - A) Job
+    - B) Emp
+    - C) Connection, PreparedStatement, ResultSet
+    - D) Department, Location, Employee
+
+2. `getEmpList` 메소드에서 SQL 쿼리를 사용하여 `Employees` 테이블의 무슨 정보를 검색하나요?
+    - A) employee_id와 job_id
+    - B) salary와 commission_pct
+    - C) first_name과 last_name
+    - D) department_id와 manager_id
+
+3. `pstmt.setString(1, sch.get("name"));` 이 코드는 어떤 작업을 수행하나요?
+    - A) 데이터베이스에서 이름을 검색합니다.
+    - B) PreparedStatement의 첫 번째 인자를 설정합니다.
+    - C) 이름을 sch map에서 가져와 설정합니다.
+    - D) PreparedStatement를 이름으로 설정합니다.
+
+4. `getHistory` 메소드가 반환하는 객체의 타입은 무엇인가요?
+    - A) Employee
+    - B) Job
+    - C) JobHistory
+    - D) Department
+
+5. `insertEmp` 메소드에서는 어떤 SQL 쿼리를 사용하나요?
+    - A) SELECT
+    - B) UPDATE
+    - C) DELETE
+    - D) INSERT
+
+6. 예외 처리에서 `con.rollback();` 코드의 목적은 무엇인가요?
+    - A) 데이터베이스 연결을 종료합니다.
+    - B) 데이터베이스에 변경사항을 저장합니다.
+    - C) 쿼리를 다시 실행합니다.
+    - D) 데이터베이스의 변경 사항을 원래 상태로 되돌립니다.
+
+7. `insertDepartments` 메소드는 어떤 값을 반환하나요?
+    - A) void
+    - B) int
+    - C) Department
+    - D) boolean
+
+8. `deleteLocation` 메소드의 매개변수는 어떤 타입인가요?
+    - A) Department
+    - B) int
+    - C) Emp
+    - D) String
+
+9. 클래스 내의 `updateLocation` 메소드는 어떤 작업을 수행하나요?
+    - A) location 테이블에서 레코드를 삭제합니다.
+    - B) location 테이블에 새 레코드를 삽입합니다.
+    - C) location 테이블의 특정 레코드를 업데이트합니다.
+    - D) location 테이블의 모든 레코드를 검색합니다.
+
+10. `main` 메소드에서 `dao.deleteLocation(1000);` 코드의 목적은 무엇인가요?
+    - A) location_id가 1000인 레코드를 찾습니다.
+    - B) location_id가 1000인 레코드를 업데이트합니다.
+    - C) location_id가 1000인 레코드를 삭제합니다.
+    - D) location_id가 1000인 레코드를 등록합니다.
+    
+C) Connection, PreparedStatement, ResultSet
+C) first_name과 last_name
+B) PreparedStatement의 첫 번째 인자를 설정합니다.
+C) JobHistory
+D) INSERT
+D) 데이터베이스의 변경 사항을 원래 상태로 되돌립니다.
+B) int
+B) int
+C) location 테이블의 특정 레코드를 업데이트합니다.
+C) location_id가 1000인 레코드를 삭제합니다.
+
+
+
+
+
+
+
+
+
+
+

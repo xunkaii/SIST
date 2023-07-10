@@ -1,0 +1,72 @@
+1. JSTL은 무엇의 약자인가요?
+   a) Java Server Technology Library
+   b) Java Standard Tag Library #
+   c) Java Server Tag Library 
+   d) Java Standard Technology Library
+
+2. JSTL을 사용하기 위해 필요한 라이브러리 파일은 무엇인가요?
+   a) jstl-core.jar
+   b) jstl.jar
+   c) jstl-api.jar 
+   d) jstl-1.2.jar #
+
+3. JSTL에서 변수와 객체를 설정하고 변경하거나 삭제하기 위해 사용하는 태그는 무엇인가요?
+   a) \<c:set> #
+   b) \<c:if>
+   c) \<c:forEach>
+   d) \<c:choose>
+
+4. JSTL을 사용하여 조건문을 처리하기 위해 사용하는 태그는 무엇인가요?
+   a) \<c:set>
+   b) \<c:if> #
+   c) \<c:forEach>
+   d) \<c:choose> #
+
+5. JSTL을 사용하여 반복문을 처리하기 위해 사용하는 태그는 무엇인가요?
+   a) \<c:set>
+   b) \<c:if>
+   c) \<c:forEach> #
+   d) \<c:choose>
+
+6. JSTL에서 변수를 선언하고 값을 할당하는 방법은 다음 중 어떤 것인가요?
+   a) \<c:set var="변수명" value="값" scope="session"/> #
+   b) \<c:var name="변수명" value="값" scope="session"/>
+   c) \<c:set name="변수명" value="값" scope="session"/>
+   d) \<c:variable name="변수명" value="값" scope="session"/>
+
+
+7. JSTL에서 조건문의 그 외 조건을 처리하기 위해 사용하는 태그는 무엇인가요?
+   a) \<c:if>
+   b) \<c:when>
+   c) \<c:otherwise> #
+   d) \<c:choose>
+
+8. JSTL에서 반복문을 처리할 때 시작값을 설정하는 속성은 무엇인가요?
+    a) begin #
+    b) start
+    c) from
+    d) initial
+
+9. JSTL에서 반복문을 처리할 때 마지막값을 설정하는 속성은 무엇인가요?
+    a) end # 
+    b) last 
+    c) to
+    d) final
+
+10. JSTL에서 반복문을 처리할 때 증감값을 설정하는 속성은 무엇인가요?
+    a) step #
+    b) increase
+    c) increment
+    d) add
+
+11. JSTL에서 반복문을 처리할 때 현재 실행 중인 루프의 첫 번째 실행인지 확인하는 변수는 무엇인가요?
+    a) first #
+    b) start
+    c) initial
+    d) beginning
+
+12. JSTL에서 반복문을 처리할 때 현재 실행 중인 루프의 마지막 실행인지 확인하는 변수는 무엇인가요?
+    a) last #
+    b) end
+    c) final
+    d) finish

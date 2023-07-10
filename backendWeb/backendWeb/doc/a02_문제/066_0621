@@ -1,0 +1,326 @@
+1. 다음 중 action이 설정되지 않아 요청값을 현재 페이지로 전달하는 경우, 처리 방법에 대한 설명으로 올바른 것은?
+a) 요청값을 현재 페이지로 전달하기 위해 form의 action 속성을 현재 페이지로 설정한다.
+b) 초기 화면과 요청값이 전달되었을 때, 화면을 감안하여 요청 데이터를 처리하여 null 값이 발생하지 않도록 처리한다.
+c) 초기 페이지에서 입력한 값을 다시 서버로 전송하기 위해 JavaScript를 사용하여 AJAX 요청을 처리한다.
+d) 초기 페이지와 요청값이 전달되는 경우, 서버에서 해당 페이지를 처리하고 다시 현재 페이지로 리다이렉트한다.
+
+2. 다음은 Java와 JavaScript의 변수를 연동하는 코드 일부분입니다. 올바른 설명은?
+```javascript
+var name = "<%=name%>";
+var age = <%=age%>;
+var isAdult = <%=isAdult%>;
+```
+a) Java에서 설정된 name, age, isAdult 변수를 JavaScript 변수에 할당한다.
+b) JavaScript에서 설정된 name, age, isAdult 변수를 Java 변수에 할당한다.
+c) Java와 JavaScript 간에 변수를 직접 연동할 수 없으므로, AJAX를 사용하여 데이터를 주고받아야 한다.
+d) JavaScript에서 설정된 name, age, isAdult 변수를 HTML 페이지에 출력한다.
+
+3. 다음 중 요청값을 사용하여 VO 객체를 생성하는 처리 방법에 대한 설명으로 올바른 것은?
+a) 요청값을 사용하여 VO 객체를 생성하기 위해 form 객체를 사용하여 요청값을 전송한다.
+b) 요청값을 사용하여 VO 객체를 생성하기 위해 JavaScript에서 해당 값을 가져와서 VO 객체의 생성자에 매개변수로 전달한다.
+c) 요청값을 사용하여 VO 객체를 생성하기 위해 JavaScript에서 AJAX 요청을 보내고, Java 서버에서 VO 객체를 생성하여 응답한다.
+d) 요청값을 사용하여 VO 객체를 생성하기 위해 Java 서버에서 해당 값을 받아 처리한 후, JavaScript로 응답한다.
+
+4. 아래 코드에서 JavaScript 함수 `checkValid()`의 역할은 무엇인가요?
+
+    	<h2>회원 등록</h2>
+    	<form onsubmit="return checkValid()" method="post">
+         	<div class="mb-3 mt-3">
+            <label for="id">아이디:</label>
+            <input type="text" class="form-control" 
+      	     id="id" placeholder="아이디 입력" name="id">
+a) form의 입력 값 유효성을 검사하여 유효한 경우에만 서버로 데이터를 전송한다.
+b) form의 입력 값 중 필수 데이터가 입력되었는지 확인하고, 아이디의 중복 여부를 확인한다.
+c) form의 입력 값 중 패스워드와 패스워드 확인이 일치하는지 검사한다.
+d) form의 입력 값이 숫자 형식이 맞는지, 날짜 형식이 맞는지 확인한다.
+
+
+5. 다음 중 JavaScript에서 alert 함수를 사용하여 출력되는 내용은 무엇인가요?
+<%
+	String name= "홍길동";
+	int age = 25;
+	boolean isAult = age>=18;
+%> 
+
+```javascript
+alert("이름은:" + name);
+```
+a) "이름은: 홍길동"
+b) "이름은: <%=name%>"
+c) "이름은: null"
+d) "이름은: undefined"
+
+6. 다음은 HTML form을 사용하여 회원 정보를 등록하는 코드 일부분입니다. 올바른 설명은?
+```html
+<form onsubmit="return checkValid()" method="post">
+    <div class="mb-3 mt-3">
+        <label for="id">아이디:</label>
+        <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="id">
+    </div>
+    <!-- 이하 생략 -->
+</form>
+```
+a) form의 입력 값을 서버로 전송하기 전에 `checkValid()` 함수를 호출하여 유효성을 검사한다.
+b) form의 입력 값 중 아이디 필드에 대한 유효성을 검사하여 유효하지 않은 경우에만 서버로 전송한다.
+c) form의 입력 값을 서버로 전송하기 전에 중복 아이디 체크를 수행하여 중복된 경우에는 서버로 전송하지 않는다.
+d) form의 입력 값 중 아이디 필드에 대한 중복 체크를 수행하여 중복된 경우 경고 메시지를 출력한다.
+
+7. 아래 코드에서 `log()` 함수는 어떤 역할을 수행하나요?
+<%
+	String id = request.getParameter("id");
+	String pass = request.getParameter("pass");
+	String name = request.getParameter("name");
+	String auth = request.getParameter("auth");
+	if(id!=null){
+		int point = Integer.parseInt(pointS);
+		// vo 객체로 받아들이기..
+		Member m = new Member(id,pass,name,auth,point) ;
+		log("# 회원등록 VO로 성공#");
+		log(m.getId());
+		log(m.getPass());
+		log(m.getName());
+		log(m.getAuth());
+		log(""+m.getPoint());
+	}
+%>
+
+a) JavaScript의 내장 함수로, console.log와 동일하게 동작하여 로그 메시지를 출력한다.
+b) jsp에서 제공하는 로깅 라이브러리로, 서버의 로그 파일에 메시지를 기록한다.
+c) JavaScript의 내장 함수가 아니며, 주석 처리된 코드로서 실행되지 않는다.
+d) log라는 이름의 사용자 정의 함수로, 아무런 동작도 수행하지 않는다.
+
+
+8. JavaScript 변수 `isAdult`의 값은 어떻게 결정되나요?
+<%
+	String name= "홍길동";
+	int age = 25;
+	boolean isAult = age>=18;
+%> 
+<script type="text/javascript">
+	var name = "<%=name%>"
+	var age = <%=age%>
+	var isAult= <%=isAult%>	
+	alert("이름은:"+name)
+	alert("age:"+age)
+	if(isAult){
+		alert('성년')	
+	}else{
+		alert('미성년')
+	}
+	
+a) Java에서 전달된 `isAult` 값을 그대로 할당한다.
+b) `age` 변수가 18 이상인 경우에 `isAdult` 변수에 `true`를 할당한다.
+c) `isAdult` 변수는 코드 상에서 정의되어 있지 않으므로 `undefined`이다.
+d) `isAult` 변수의 오타로 인해 정의되지 않았으므로, `isAdult` 변수도 정의되지 않는다.
+
+
+
+
+1. 다음 중 action이 설정되지 않아 요청값을 현재 페이지로 전달하는 경우, 처리 방법에 대한 설명으로 올바른 것은?
+a) 요청값을 현재 페이지로 전달하기 위해 
+	form의 action 속성을 현재 페이지로 설정한다.
+	지정해도 되지만, 저정하지 않으면 현재 페이로 호출된다.
+b) 초기 화면과 요청값이 전달되었을 때,
+   화면을 감안하여 요청 데이터를 처리하여 null 값이 발생하지 않도록 처리한다.
+c) 초기 페이지에서 입력한 값을 다시 서버로 전송하기 위해 
+		JavaScript를 사용하여 AJAX 요청을 처리한다.
+	form객체로 서버에 submit로 요청할 수 있다.	
+d) 초기 페이지와 요청값이 전달되는 경우, 서버에서 해당 페이지를 처리하고
+	다시 현재 페이지로 리다이렉트한다.
+	리다이렉트 : 현재 페이지가 전환이 된다는 말인데,
+	이것보다는 요청값을 받아서 처리된 내용을 response의 out 객체를
+	통해 출력된다.
+
+1. 다음 중 action이 설정되지 않아 요청값을 현재 페이지로 전달하는 경우, 처리 방법에 대한 설명으로 올바른 것은?
+정답: b) 초기 화면과 요청값이 전달되었을 때, 화면을 감안하여 요청 데이터를 처리하여 null 값이 발생하지 않도록 처리한다.
+설명: action이 설정되지 않으면 요청은 현재 페이지로 전달됩니다. 이 경우, 초기 화면과 요청값이 함께 전달되므로, 요청 데이터를 처리할 때 null 값이 발생하지 않도록 처리해야 합니다.
+String name = request.getParamter("name");
+if(name==null) name="";
+
+value="<%=name%>" null
+value="<%=name.toString()%>" nullpointerexception 화면 중지.
+
+
+
+2. 다음은 Java와 JavaScript의 변수를 연동하는 코드 일부분입니다. 올바른 설명은?
+
+```javascript
+var name = "<%=name%>";
+var age = <%=age%>;
+var isAdult = <%=isAdult%>;
+```
+a) Java에서 설정된 name, age, isAdult 변수를 
+	JavaScript 변수에 할당한다.
+b) JavaScript에서 설정된 name, age, isAdult 변수를 
+	Java 변수에 할당한다.(반대)
+c) Java와 JavaScript 간에 변수를 직접 연동할 수 없으므로,
+	 AJAX를 사용하여 데이터를 주고받아야 한다.
+    expression(<%=%>)로 직접연동 가능	 
+d) JavaScript에서 설정된 name, age, isAdult 변수를
+	 HTML 페이지에 출력한다.
+정답: a) Java에서 설정된 name, age, isAdult 변수를 JavaScript 변수에 할당한다.
+
+설명: <%=name%>, <%=age%>, <%=isAdult%>는 Java에서 설정된 변수 값을 JavaScript 변수에 할당하는 코드입니다.
+
+
+#3. 다음 중 요청값을 사용하여 VO 객체를 생성하는 처리 방법에 대한 설명으로 올바른 것은?
+a) 요청값을 사용하여 VO 객체를 생성하기 위해 form 객체를 사용하여 요청값을 전송한다.
+	과정
+b) 요청값을 사용하여 VO 객체를 생성하기 위해 JavaScript에서 해당 값을 가져와서 VO 객체의 생성자에 매개변수로 전달한다.
+	X :javascript가 아니고 jsp의 request객체를 통해서 변수로 받아/.
+c) 요청값을 사용하여 VO 객체를 생성하기 위해 
+	JavaScript에서 AJAX 요청을 보내고, 
+	Java 서버에서 VO 객체를 생성하여 응답한다.
+    O 
+    JavaScript에서 AJAX 요청을 보내고(ajax는 화면이 현재 상태에
+    	js로 서버에 전달하고 다시 받는 처리)
+d) 요청값을 사용하여 VO 객체를 생성하기 위해 
+	Java 서버에서 해당 값을 받아 처리한 후, JavaScript로 응답한다.
+form객체 ==> submit ==> 요청값처리 ==> 형변환 ==>  vo객체생성과 할당
+c) 이 선택지는 클라이언트에서 서버로 AJAX 요청을 보내고, 서버에서 그 요청을 처리하여 VO 객체를 생성하고 응답하는 방법을 설명합니다. 이는 VO 객체 생성에 대한 일반적인 처리 방식이며, 
+AJAX를 사용하면 페이지를 새로 고침하지 않고도 서버와 데이터를 주고받을 수 있습니다.
+    	
+4. 아래 코드에서 JavaScript 함수 `checkValid()`의 역할은 무엇인가요?
+    	<h2>회원 등록</h2>
+    	<form onsubmit="return checkValid()" method="post">
+         	<div class="mb-3 mt-3">
+            <label for="id">아이디:</label>
+            <input type="text" class="form-control" 
+      	     id="id" placeholder="아이디 입력" name="id">
+      	     
+a) form의 입력 값 유효성을 검사하여 유효한 경우에만 서버로 데이터를 전송한다.
+b) form의 입력 값 중 필수 데이터가 입력되었는지 확인하고, 아이디의 중복 여부를 확인한다.
+c) form의 입력 값 중 패스워드와 패스워드 확인이 일치하는지 검사한다.
+d) form의 입력 값이 숫자 형식이 맞는지, 날짜 형식이 맞는지 확인한다.
+
+onsubmit="return false" :전송안된 
+onsubmit="return true" :전송처리..
+submit를 클릭할 때, 처리되는 내용으로 
+onsubmit="return checkValid()"  함수로 지정 처리하여
+유효성 check해서 전송여부 결정..
+function checkValid(){
+	var isValid=true;
+	var nameVal = document.querySelector("[name=name]").value
+	if(nameVal==""){
+		alert("이름을 입력하세요");
+		// 전송되지 않고, 프로세스 중단.
+		isValid=false;
+	}
+	return isValid;
+} 
+# onsubmit="return checkValid()" 역할.
+
+정답: a) form의 입력 값 유효성을 검사하여 유효한 경우에만 서버로 데이터를 전송한다.
+
+설명: `checkValid()` 함수는 form의 입력 값의 유효성을 검사하여 유효한 경우에만 서버로 데이터를 전송하는 역할을 수행합니다.
+
+
+5. 다음 중 JavaScript에서 alert 함수를 사용하여 출력되는 내용은 무엇인가요?
+<%
+	String name= "홍길동";
+	int age = 25;
+	boolean isAult = age>=18;
+%> 
+
+```javascript
+alert("이름은:" + name);
+```
+a) "이름은: 홍길동"
+b) "이름은: <%=name%>"
+c) "이름은: null"
+d) "이름은: undefined"
+
+정답: a) "이름은: 홍길동"
+
+설명: alert 함수를 사용하여 "이름은: 홍길동"이라는 내용이 출력됩니다.
+
+
+6. 다음은 HTML form을 사용하여 회원 정보를 등록하는 코드 일부분입니다. 올바른 설명은?
+```html
+<form onsubmit="return checkValid()" method="post">
+    <div class="mb-3 mt-3">
+        <label for="id">아이디:</label>
+        <input type="text" class="form-control" id="id" placeholder="아이디 입력" name="id">
+    </div>
+    <!-- 이하 생략 -->
+</form>
+```
+a) form의 입력 값을 서버로 전송하기 전에 `checkValid()` 함수를 호출하여 유효성을 검사한다.
+b) form의 입력 값 중 아이디 필드에 대한 유효성을 검사하여 유효하지 않은 경우에만 서버로 전송한다.
+c) form의 입력 값을 서버로 전송하기 전에 중복 아이디 체크를 수행하여 중복된 경우에는 서버로 전송하지 않는다.
+d) form의 입력 값 중 아이디 필드에 대한 중복 체크를 수행하여 중복된 경우 경고 메시지를 출력한다.
+
+정답: a) form의 입력 값을 서버로 전송하기 전에 `checkValid()` 함수를 호출하여 유효성을 검사한다.
+
+설명: form의 입력 값을 서버로 전송
+
+하기 전에 `checkValid()` 함수를 호출하여 입력 값의 유효성을 검사하는 역할을 수행합니다.
+
+
+
+
+
+#7. 아래 코드에서 `log()` 함수는 어떤 역할을 수행하나요?
+	String id = request.getParameter("id");
+	String pass = request.getParameter("pass");
+	String name = request.getParameter("name");
+	String auth = request.getParameter("auth");
+	if(id!=null){
+		int point = Integer.parseInt(pointS);
+		// vo 객체로 받아들이기..
+		Member m = new Member(id,pass,name,auth,point) ;
+		log("# 회원등록 VO로 성공#");
+		log(m.getId());
+		log(m.getPass());
+		log(m.getName());
+		log(m.getAuth());
+		log(""+m.getPoint());
+	}
+
+a) JavaScript의 내장 함수로, console.log와 동일하게 동작하여 로그 메시지를 출력한다.
+b) jsp에서 제공하는 로깅 라이브러리로, 서버의 로그 파일에 메시지를 기록한다.
+c) JavaScript의 내장 함수가 아니며, 주석 처리된 코드로서 실행되지 않는다.
+d) log라는 이름의 사용자 정의 함수로, 아무런 동작도 수행하지 않는다.
+
+console.log():클라이언트단에 처리되는 프로를 코드로 check
+log():서버단에서 처리되는 플로우를 코드로 check
+
+b) Java에서 제공하는 로깅 라이브러리로, 서버의 로그 파일에 메시지를 기록한다.
+
+8. JavaScript 변수 `isAdult`의 값은 어떻게 결정되나요?
+a) Java에서 전달된 `isAdult` 값을 그대로 할당한다.
+	var isAdult= <%=isAdult%>
+	boolean값이므로 ""를 붙이지 않는다.	
+	정답
+b) `age` 변수가 18 이상인 경우에 `isAdult` 변수에 `true`를 할당한다.
+    int age = 25;
+	boolean isAdult = age>=18;
+	정답
+	
+c) `isAdult` 변수는 코드 상에서 정의되어 있지 않으므로 `undefined`이다.
+d) `isAdult` 변수의 오타로 인해 정의되지 않았으므로, `isAdult` 변수도 정의되지 않는다.
+
+<%
+	String name= "홍길동";
+	int age = 25;
+	boolean isAdult = age>=18;
+%> 
+<script type="text/javascript">
+	var name = "<%=name%>"
+	var age = <%=age%>
+	var isAdult= <%=isAdult%>	
+	alert("이름은:"+name)
+	alert("age:"+age)
+	if(isAdult){
+		alert('성년')	
+	}else{
+		alert('미성년')
+	}
+	
+
+정답: b) `age` 변수가 18 이상인 경우에 `isAdult` 변수에 `true`를 할당한다.
+설명: `age` 변수가 18 이상인 경우에 `isAdult` 변수에 `true`를 할당합니다.
+
+
+
+

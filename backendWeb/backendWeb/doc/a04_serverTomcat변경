@@ -1,0 +1,14 @@
+# tomcat 10 ==> tomcat 9변경
+1.jstl 인식 호환문제로 변경 필요
+2. 절차
+	1) tomcat 10.0 삭제 처리
+	2) 프로젝트 우크릵
+		==> properties ==> project facet dynamic web module 4.0 변경
+	3) tomcat 9.0 설치
+	4) tomcat 9.0 폴더 안에 lib안에 jsp , servlet jar 파일 가져오기
+	5) 프로젝트 tomcat 9.0에 추가
+	6) 특정 파일 실행
+# 수업 소스 문제 발생 / 서버 에러 (git폴더가 아닌 본인 코딩 소스)
+1. 프로젝트 단위로 삭제
+	workspace에서도 삭제 되었는지 확인하기
+2. project explorer에서 오른쪽 마우스 클릭 import ==> import ==> General ==> exists workspace

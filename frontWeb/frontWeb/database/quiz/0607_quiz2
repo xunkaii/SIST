@@ -1,0 +1,30 @@
+--1. Group 함수 연습 예제
+--   1.1 직업별로 평균 급여를 계산하시오.
+SELECT job 직업, avg(sal) 평균 FROM emp GROUP BY job ORDER BY job;
+--   1.2 각 부서별로 가장 높은 급여를 받는 사람을 찾으시오.
+SELECT DEPARTMENT_ID , max(salary) 최고급여 FROM EMPLOYEES e
+GROUP BY DEPARTMENT_ID ORDER BY DEPARTMENT_ID;
+
+-- Subquery 연습 예제:
+--   2.1 급여가 평균 급여보다 많이 받는 사원들의 이름과 급여를 찾으시오.
+SELECT e.ename, e.sal FROM emp e, 
+(SELECT ename, avg(sal) sal FROM emp) me 
+WHERE e.sal >= me.sal 
+ORDER BY e.sal;
+--   2.2 Smith의 급여보다 많은 급여를 받는 사원들의 이름과 급여를 으시오.
+
+--3. Outer Join 연습 예제:
+--   3.1 사원들의 이름과 부서 이름을 가져오시오. (부서에 할당되지 않은 사원도 포함)
+SELECT ename, deptno FROM emp e, dept d
+WHERE e.deptno(+) = d.deptno 
+GROUP BY ename
+ORDER by ename;
+
+--   3.2 각 부서별로 최대 급여를 받는 사원의 이름을 가져오시오. (부서에 할당되지 않은 사원도 포함)
+
+
+--4. Group 함수와 Subquery를 조합한 연습 예제:
+--   4.1 각 직업별로 최대 급여를 받는 사원의 이름을 가져오시오.
+--   4.2 각 부서별로 최소 급여를 받는 사원의 이름을 가져오시오.
+
+SELECT * FROM emp
